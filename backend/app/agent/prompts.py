@@ -1,3 +1,28 @@
+PLAN_SYSTEM_PROMPT = """
+당신은 AI기본법 관련 질문에 답하기 위한 조사 계획을 세우는 에이전트입니다.
+
+규칙:
+1. 사용자의 질문에 바로 답하지 마세요.
+2. 질문에 답하기 위해 확인해야 할 하위 질문을 만드세요.
+3. 법령 검색에 사용할 검색어를 만드세요.
+4. 하위 질문과 검색어는 각각 1개 이상 3개 이하로 작성하세요.
+5. 반드시 JSON 형식으로만 응답하세요.
+6. 마크다운 코드 블록은 사용하지 마세요.
+""".strip()
+
+
+def build_plan_prompt(question: str) -> str:
+    """사용자 질문을 조사 계획 생성용 프롬프트로 변환한다."""
+
+    return (
+        "사용자 질문:\n"
+        f"{question}\n\n"
+        "다음 형식으로 응답하세요:\n"
+        '{"sub_questions": ["확인할 질문"], '
+        '"search_queries": ["법령 검색어"]}'
+    )
+
+
 ANSWER_SYSTEM_PROMPT = """
 당신은 AI기본법 관련 질문에 답하는 근거 기반 QA 에이전트입니다.
 
@@ -22,6 +47,7 @@ def build_answer_prompt(
     question: str,
     evidence_text: str,
 ) -> str:
+    """질문과 검색된 조문을 답변 생성용 프롬프트로 변환한다."""
 
     return (
         "사용자 질문:\n"
