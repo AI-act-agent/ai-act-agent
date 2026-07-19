@@ -7,6 +7,9 @@ def mock_retrieve(
 ) -> list[Evidence]:
     """RAG 검색 결과를 대신하는 임시 함수"""
 
+    if "근거 없음" in question:
+        return []
+
     mock_evidence = [
         Evidence(
             article_id="mock_article_1",
