@@ -1,5 +1,5 @@
 from backend.app.agent.answer_generator import generate_answer
-from backend.app.agent.mocks import mock_retrieve
+from backend.app.agent.retriever import retrieve_evidence
 from backend.app.agent.planner import create_plan
 from backend.app.agent.schemas import AgentResult
 
@@ -30,7 +30,7 @@ def run_v3(question: str) -> AgentResult:
         )
         search_query = plan.search_queries[query_index]
 
-        evidence = mock_retrieve(search_query)
+        evidence = retrieve_evidence(search_query)
         last_evidence = evidence
 
         steps.append(
