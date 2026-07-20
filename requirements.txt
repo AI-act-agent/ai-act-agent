@@ -1,3 +1,7 @@
 google-genai==2.12.1
 python-dotenv==1.2.2
 numpy
+
+torch==2.13.0
+transformers==5.14.1
+sentencepiece==0.2.2
