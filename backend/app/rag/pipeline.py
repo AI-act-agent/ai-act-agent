@@ -31,7 +31,7 @@ DEFAULT_CHUNKS_PATH = (
     PROJECT_ROOT
     / "data"
     / "processed"
-    / "sample_law_chunks.json"
+    / "law_chunks.json"
 )
 
 VECTOR_STORE_PATH = (
@@ -139,6 +139,22 @@ def create_embedding(text):
 
     return response.embeddings[0].values
 
+def create_embeddings(texts):
+    if not texts:
+        raise ValueError(
+            "임베딩할 텍스트 목록이 비어 있습니다."
+        )
+
+    response = client.models.embed_content(
+        model=EMBEDDING_MODEL,
+        contents=texts,
+    )
+
+    return [
+        embedding.values
+        for embedding in response.embeddings
+    ]
+
 
 def cosine_similarity(vector_a, vector_b):
     a = np.asarray(vector_a, dtype=float)
@@ -170,13 +186,22 @@ def build_vector_store(
         f"총 {len(chunks)}개 조문의 임베딩을 생성합니다."
     )
 
-    for index, chunk in enumerate(chunks, start=1):
-        embedding_text = build_embedding_text(chunk)
-        embedding = create_embedding(embedding_text)
+    embedding_texts = [
+        build_embedding_text(chunk)
+        for chunk in chunks
+    ]
 
+    embeddings = create_embeddings(
+        embedding_texts
+    )
+
+    for index, (chunk, embedding) in enumerate(
+        zip(chunks, embeddings),
+        start=1,
+    ):
         records.append({
             "chunk": chunk,
-            "embedding": embedding
+            "embedding": embedding,
         })
 
         print(
