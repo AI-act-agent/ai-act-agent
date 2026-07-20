@@ -1,0 +1,50 @@
+[
+  {
+    "chunk_id": "SAMPLE_ACT_31",
+    "document_name": "샘플 인공지능기본법",
+    "document_type": "법률",
+    "article_number": "제31조",
+    "article_title": "인공지능 투명성 확보 의무",
+    "article_text": "생성형 인공지능과 고영향 인공지능을 이용한 제품 또는 서비스를 제공할 때 이용자에게 인공지능 기반으로 운용된다는 사실을 고지하는 내용에 관한 샘플 조문이다.",
+    "effective_date": "2026-07-21",
+    "source_url": "SAMPLE_ONLY",
+    "references": [
+      "SAMPLE_DECREE_23"
+    ]
+  },
+  {
+    "chunk_id": "SAMPLE_DECREE_23",
+    "document_name": "샘플 인공지능기본법 시행령",
+    "document_type": "대통령령",
+    "article_number": "제23조",
+    "article_title": "인공지능 투명성 확보 의무",
+    "article_text": "이용약관, 사용자 화면 또는 서비스 제공 장소 등을 이용해 인공지능 기반으로 운용된다는 사실을 고지하는 방법에 관한 샘플 조문이다.",
+    "effective_date": "2026-01-22",
+    "source_url": "SAMPLE_ONLY",
+    "references": [
+      "SAMPLE_ACT_31"
+    ]
+  },
+  {
+    "chunk_id": "SAMPLE_ACT_33",
+    "document_name": "샘플 인공지능기본법",
+    "document_type": "법률",
+    "article_number": "제33조",
+    "article_title": "고영향 인공지능 확인",
+    "article_text": "자신의 인공지능이 고영향 인공지능에 해당하는지 확인을 요청하는 절차에 관한 샘플 조문이다.",
+    "effective_date": "2026-07-21",
+    "source_url": "SAMPLE_ONLY",
+    "references": []
+  },
+  {
+    "chunk_id": "SAMPLE_ACT_34",
+    "document_name": "샘플 인공지능기본법",
+    "document_type": "법률",
+    "article_number": "제34조",
+    "article_title": "고영향 인공지능 관련 사업자의 책무",
+    "article_text": "고영향 인공지능과 관련하여 사업자가 마련해야 하는 위험관리, 설명 및 이용자 보호조치 등에 관한 샘플 조문이다.",
+    "effective_date": "2026-07-21",
+    "source_url": "SAMPLE_ONLY",
+    "references": []
+  }
+]
