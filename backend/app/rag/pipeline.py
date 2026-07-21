@@ -1,7 +1,11 @@
+from functools import lru_cache
+
+from sentence_transformers import SentenceTransformer
 import argparse
 import json
 import os
 import time
+import re
 from pathlib import Path
 
 import numpy as np
@@ -12,9 +16,12 @@ from google import genai
 load_dotenv()
 
 API_KEY = os.getenv("GEMINI_API_KEY")
-EMBEDDING_MODEL = os.getenv(
-    "GEMINI_EMBEDDING_MODEL",
-    "gemini-embedding-001"
+LOCAL_EMBEDDING_MODEL = os.getenv(
+    "LOCAL_EMBEDDING_MODEL",
+    (
+        "sentence-transformers/"
+        "paraphrase-multilingual-MiniLM-L12-v2"
+    ),
 )
 GENERATION_MODEL = os.getenv("GEMINI_GENERATION_MODEL")
 
@@ -126,34 +133,53 @@ def build_embedding_text(chunk):
     )
 
 
+@lru_cache(maxsize=1)
+def load_embedding_model():
+    print(
+        "로컬 임베딩 모델을 불러옵니다: "
+        f"{LOCAL_EMBEDDING_MODEL}"
+    )
+
+    model = SentenceTransformer(
+        LOCAL_EMBEDDING_MODEL
+    )
+
+    print("로컬 임베딩 모델 로딩 완료")
+
+    return model
+
+
+def create_embeddings(
+    texts,
+    batch_size=32,
+):
+    if not texts:
+        raise ValueError(
+            "임베딩할 텍스트 목록이 비어 있습니다."
+        )
+
+    model = load_embedding_model()
+
+    embeddings = model.encode(
+        texts,
+        batch_size=batch_size,
+        normalize_embeddings=True,
+        show_progress_bar=len(texts) > 1,
+    )
+
+    return embeddings.tolist()
+
+
 def create_embedding(text):
     if not text or not text.strip():
         raise ValueError(
             "임베딩할 텍스트가 비어 있습니다."
         )
 
-    response = client.models.embed_content(
-        model=EMBEDDING_MODEL,
-        contents=text
-    )
-
-    return response.embeddings[0].values
-
-def create_embeddings(texts):
-    if not texts:
-        raise ValueError(
-            "임베딩할 텍스트 목록이 비어 있습니다."
-        )
-
-    response = client.models.embed_content(
-        model=EMBEDDING_MODEL,
-        contents=texts,
-    )
-
-    return [
-        embedding.values
-        for embedding in response.embeddings
-    ]
+    return create_embeddings(
+        [text],
+        batch_size=1,
+    )[0]
 
 
 def cosine_similarity(vector_a, vector_b):
@@ -230,6 +256,89 @@ def load_vector_store(
     return load_json(path)
 
 
+SEARCH_STOPWORDS = {
+    "관련",
+    "대한",
+    "무엇",
+    "무엇인가요",
+    "어떻게",
+    "해야",
+    "하나요",
+    "인가요",
+}
+
+
+def normalize_search_text(text):
+    normalized = text.lower()
+
+    replacements = {
+        r"생\s+성형": "생성형",
+        r"고\s+영향": "고영향",
+        r"인\s+공지능": "인공지능",
+        r"저\s+작권": "저작권",
+    }
+
+    for pattern, replacement in replacements.items():
+        normalized = re.sub(
+            pattern,
+            replacement,
+            normalized,
+        )
+
+    return re.sub(
+        r"\s+",
+        " ",
+        normalized,
+    ).strip()
+
+
+def extract_search_terms(text):
+    normalized = normalize_search_text(text)
+
+    return {
+        term
+        for term in re.findall(
+            r"[가-힣a-z0-9]+",
+            normalized,
+        )
+        if (
+            len(term) >= 2
+            and term not in SEARCH_STOPWORDS
+        )
+    }
+
+
+def calculate_lexical_score(
+    question,
+    chunk,
+):
+    query_terms = extract_search_terms(
+        question
+    )
+
+    if not query_terms:
+        return 0.0
+
+    document_text = " ".join([
+        chunk["document_name"],
+        chunk["article_number"],
+        chunk["article_title"],
+        chunk["article_text"],
+    ])
+
+    normalized_document = normalize_search_text(
+        document_text
+    )
+
+    matched_count = sum(
+        1
+        for term in query_terms
+        if term in normalized_document
+    )
+
+    return matched_count / len(query_terms)
+
+
 def retrieve_v1(
     question,
     records,
@@ -240,19 +349,37 @@ def retrieve_v1(
             "질문이 비어 있습니다."
         )
 
-    question_embedding = create_embedding(question)
+    normalized_question = normalize_search_text(
+        question
+    )
+
+    question_embedding = create_embedding(
+        normalized_question
+    )
     results = []
 
     for record in records:
-        score = cosine_similarity(
+        dense_score = cosine_similarity(
             question_embedding,
-            record["embedding"]
+            record["embedding"],
+        )
+
+        lexical_score = calculate_lexical_score(
+            question=normalized_question,
+            chunk=record["chunk"],
+        )
+
+        combined_score = (
+            dense_score * 0.7
+            + lexical_score * 0.3
         )
 
         results.append({
             **record["chunk"],
-            "score": score,
-            "retrieval_type": "dense"
+            "score": combined_score,
+            "dense_score": dense_score,
+            "lexical_score": lexical_score,
+            "retrieval_type": "hybrid",
         })
 
     results.sort(
