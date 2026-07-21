@@ -338,6 +338,50 @@ def calculate_lexical_score(
 
     return matched_count / len(query_terms)
 
+def calculate_intent_score(
+    question,
+    chunk,
+):
+    """질문의 의도와 청크 제목이 일치하는지 계산한다."""
+
+    normalized_question = normalize_search_text(
+        question
+    )
+
+    normalized_title = normalize_search_text(
+        chunk["article_title"]
+    )
+
+    definition_query_markers = (
+        "이란",
+        "정의",
+        "뜻",
+    )
+
+    definition_title_markers = (
+        "정의",
+        "개념",
+        "용어",
+    )
+
+    asks_for_definition = any(
+        marker in normalized_question
+        for marker in definition_query_markers
+    )
+
+    has_definition_title = any(
+        marker in normalized_title
+        for marker in definition_title_markers
+    )
+
+    if (
+        asks_for_definition
+        and has_definition_title
+    ):
+        return 1.0
+
+    return 0.0
+
 
 def retrieve_v1(
     question,
@@ -365,13 +409,19 @@ def retrieve_v1(
         )
 
         lexical_score = calculate_lexical_score(
-            question=normalized_question,
-            chunk=record["chunk"],
+            question,
+            record["chunk"],
+        )
+
+        intent_score = calculate_intent_score(
+            question,
+            record["chunk"],
         )
 
         combined_score = (
-            dense_score * 0.7
-            + lexical_score * 0.3
+            dense_score * 0.65
+            + lexical_score * 0.25
+            + intent_score * 0.10
         )
 
         results.append({
@@ -379,6 +429,7 @@ def retrieve_v1(
             "score": combined_score,
             "dense_score": dense_score,
             "lexical_score": lexical_score,
+            "intent_score": intent_score,
             "retrieval_type": "hybrid",
         })
 

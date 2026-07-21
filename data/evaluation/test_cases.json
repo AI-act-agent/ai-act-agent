@@ -1,0 +1,46 @@
+[
+  {
+    "id": "Q001",
+    "type": "법령 직접 질의",
+    "question": "고영향 인공지능이란 무엇인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_2"
+    ],
+    "gold_answer": "고영향 인공지능은 사람의 생명, 신체의 안전 및 기본권에 중대한 영향을 미치거나 위험을 초래할 우려가 있으며, 법에서 정한 영역에서 활용되는 인공지능시스템입니다.",
+    "required_key_points": [
+      "생명·신체의 안전 및 기본권에 중대한 영향을 미치거나 위험을 초래할 우려",
+      "법에서 정한 영역에서 활용되는 인공지능시스템"
+    ]
+  },
+  {
+  "id": "Q002",
+  "type": "가이드라인 질의",
+  "question": "생성형 AI 결과물을 외부로 반출할 때 어떻게 표시해야 하나요?",
+  "answerable": true,
+  "expected_verdict": "답변 확정",
+  "gold_article_ids": [
+    "AI_BASIC_ACT_31",
+    "AI_TRANSPARENCY_GUIDE_5"
+  ],
+  "gold_answer": "생성형 AI 결과물은 AI에 의해 생성되었다는 사실을 표시해야 하며, 다운로드나 공유 등으로 외부 반출하는 경우 결과물 자체에도 생성 사실을 표시해야 합니다.",
+  "required_key_points": [
+    "생성형 AI에 의해 생성되었다는 사실을 표시",
+    "외부 반출 시 결과물 자체에 생성 사실을 표시"
+  ]
+},
+{
+  "id": "Q003",
+  "type": "범위 외 질의",
+  "question": "AI가 만든 음악의 저작권자는 누구인가요?",
+  "answerable": false,
+  "expected_verdict": "판단 보류",
+  "gold_article_ids": [],
+  "gold_answer": "제공된 AI기본법과 가이드라인에는 AI 생성 음악의 저작권 귀속을 판단할 근거가 없으므로 판단을 보류합니다.",
+  "required_key_points": [
+    "제공된 근거에 저작권 귀속 규정이 없음",
+    "판단 보류"
+  ]
+}
+]

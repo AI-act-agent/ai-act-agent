@@ -1,0 +1,3 @@
+﻿version,case_count,verdict_accuracy,answerability_precision,answerability_recall,answerability_f1,hallucination_rate,false_abstention_rate,mean_evidence_recall,average_latency_ms,median_latency_ms,average_api_calls
+V3,2,1.0,1.0,1.0,1.0,0.0,0.0,1.0,11767.945,11767.945,3.0
+V4,2,1.0,1.0,1.0,1.0,0.0,0.0,1.0,41342.265,41342.265,3.0
