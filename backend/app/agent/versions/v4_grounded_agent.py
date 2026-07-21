@@ -15,7 +15,18 @@ def run_v4(question: str) -> AgentResult:
         raise ValueError("질문을 입력해야 합니다.")
 
     plan = create_plan(question)
-    search_queries = plan.search_queries or [question]
+
+    search_queries = [
+        question,
+        *[
+            query
+            for query in plan.search_queries
+            if (
+                query.strip()
+                and query.strip() != question.strip()
+            )
+        ],
+    ]
 
     steps = [
         "질문 입력",

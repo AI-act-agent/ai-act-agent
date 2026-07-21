@@ -15,6 +15,18 @@ def run_v3(question: str) -> AgentResult:
 
     plan = create_plan(question)
 
+    search_queries = [
+        question,
+        *[
+            query
+            for query in plan.search_queries
+            if (
+                query.strip()
+                and query.strip() != question.strip()
+            )
+        ],
+    ]
+
     steps = [
         "질문 입력",
         "조사 계획 생성",
@@ -26,9 +38,9 @@ def run_v3(question: str) -> AgentResult:
     for attempt in range(MAX_RETRIES + 1):
         query_index = min(
             attempt,
-            len(plan.search_queries) - 1,
+            len(search_queries) - 1,
         )
-        search_query = plan.search_queries[query_index]
+        search_query = search_queries[query_index]
 
         evidence = retrieve_evidence(search_query)
         last_evidence = evidence
