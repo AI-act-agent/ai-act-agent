@@ -451,19 +451,31 @@ def make_chunk_index(records):
 def expand_references(
     search_results,
     chunk_index,
-    max_total=8
+    max_total=8,
+    max_depth=2
 ):
     expanded = []
     visited = set()
 
-    for result in search_results:
-        result_id = result["chunk_id"]
+    queue = [
+        (result, 0)
+        for result in search_results
+    ]
 
-        if result_id not in visited:
-            expanded.append(result)
-            visited.add(result_id)
+    while queue and len(expanded) < max_total:
+        current, depth = queue.pop(0)
+        current_id = current["chunk_id"]
 
-        for reference_id in result.get(
+        if current_id in visited:
+            continue
+
+        expanded.append(current)
+        visited.add(current_id)
+
+        if depth >= max_depth:
+            continue
+
+        for reference_id in current.get(
             "references",
             []
         ):
@@ -477,16 +489,15 @@ def expand_references(
             if referenced_chunk is None:
                 continue
 
-            expanded.append({
+            reference_result = {
                 **referenced_chunk,
                 "score": None,
                 "retrieval_type": "reference"
-            })
+            }
 
-            visited.add(reference_id)
-
-            if len(expanded) >= max_total:
-                return expanded
+            queue.append(
+                (reference_result, depth + 1)
+            )
 
     return expanded
 
