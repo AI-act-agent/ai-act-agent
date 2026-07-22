@@ -14,15 +14,20 @@ EXTRACTION_SYSTEM_PROMPT = """
 4. 사용자가 사람의 검토가 없다고 명시한 경우, human_review_process를 null이 아닌 "검토 없음"으로 반환하세요.
 5. boolean 필드는 true, false, null 중 하나만 사용하세요.
 6. 반드시 JSON만 반환하고 마크다운 코드 블록을 사용하지 마세요.
+7. ai_role에는 분석, 요약, 점수 산정, 추천 등 AI가 직접 수행하는 작업만 작성하세요.
+8. decision_consequence에는 AI 결과가 평가 자료로 사용되는지, 점수에 반영되는지, 합격·탈락에 영향을 주는지 등 사람에게 미치는 결과를 작성하세요.
+9. AI 결과를 사람이 검토한 뒤 최종 결정에 이용한다고 명시한 경우, 자동 결정이 아니더라도 decision_consequence에 그 사용 결과를 작성하세요.
+10. human_review_process에는 사람이 원문이나 AI 결과를 어떻게 검토하는지만 작성하세요. 최종 결정 여부와 결과 변경 가능 여부는 각각의 boolean 필드에 분리하세요.
+11. 사용자가 어떤 사실을 명시적으로 부정하면 false로 반환하고, 그 사실을 언급하지 않았다면 null로 반환하세요.
 
 출력 형식:
 {
   "usage_domain": "활용 분야 또는 null",
-  "ai_role": "AI가 수행하는 역할 또는 null",
-  "decision_consequence": "AI 결과가 사람에게 미치는 결과 또는 null",
+  "ai_role": "AI가 직접 수행하는 작업 또는 null",
+  "decision_consequence": "AI 결과의 사용 방식과 사람에게 미치는 결과 또는 null",
   "output_used_in_score": true 또는 false 또는 null,
   "automatic_decision": true 또는 false 또는 null,
-  "human_review_process": "사람의 검토 절차 또는 null",
+  "human_review_process": "사람이 수행하는 검토 절차 또는 null",
   "human_final_decision": true 또는 false 또는 null,
   "human_can_override": true 또는 false 또는 null,
   "provided_to_third_party": true 또는 false 또는 null
