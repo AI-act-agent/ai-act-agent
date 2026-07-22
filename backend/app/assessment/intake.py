@@ -41,6 +41,19 @@ FOLLOWUP_QUESTIONS = {
     ),
 }
 
+FOLLOWUP_PRIORITY = (
+    "system_description",
+    "usage_domain",
+    "ai_role",
+    "decision_consequence",
+    "automatic_decision",
+    "output_used_in_score",
+    "human_final_decision",
+    "human_can_override",
+    "human_review_process",
+    "provided_to_third_party",
+)
+
 
 def find_missing_fields(
     assessment_input: AssessmentInput,
@@ -78,3 +91,18 @@ def build_followup_questions(
         FOLLOWUP_QUESTIONS[field_name]
         for field_name in missing_fields
     ]
+
+def build_next_followup_question(
+    assessment_input: AssessmentInput,
+) -> str | None:
+    """가장 우선순위가 높은 추가 질문 하나를 반환한다."""
+
+    missing_fields = set(
+        find_missing_fields(assessment_input)
+    )
+
+    for field_name in FOLLOWUP_PRIORITY:
+        if field_name in missing_fields:
+            return FOLLOWUP_QUESTIONS[field_name]
+
+    return None
