@@ -1,0 +1,133 @@
+{
+  "summary": {
+    "case_count": 6,
+    "verdict_accuracy": 1,
+    "macro_f1": 1.0,
+    "average_latency_ms": 0.029833333333333333
+  },
+  "label_metrics": {
+    "해당 가능성 높음": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "해당 가능성 낮음": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 2
+    },
+    "판단 보류": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    }
+  },
+  "confusion_matrix": {
+    "해당 가능성 높음": {
+      "해당 가능성 높음": 1,
+      "해당 가능성 낮음": 0,
+      "판단 보류": 0
+    },
+    "해당 가능성 낮음": {
+      "해당 가능성 높음": 0,
+      "해당 가능성 낮음": 2,
+      "판단 보류": 0
+    },
+    "판단 보류": {
+      "해당 가능성 높음": 0,
+      "해당 가능성 낮음": 0,
+      "판단 보류": 3
+    }
+  },
+  "results": [
+    {
+      "id": "A001",
+      "case_type": "clear_high",
+      "expected_verdict": "해당 가능성 높음",
+      "actual_verdict": "해당 가능성 높음",
+      "correct": true,
+      "latency_ms": 0.061,
+      "matched_criteria": [
+        "법정 활용 영역: 채용·대출 심사",
+        "AI의 의사결정 관여: 직접 결정",
+        "사람의 검토: 제한적 또는 형식적 검토"
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "A002",
+      "case_type": "clear_low",
+      "expected_verdict": "해당 가능성 낮음",
+      "actual_verdict": "해당 가능성 낮음",
+      "correct": true,
+      "latency_ms": 0.033,
+      "matched_criteria": [
+        "법정 활용 영역: 채용·대출 심사",
+        "AI의 의사결정 관여: 보조 자료",
+        "사람의 검토: 실질적 검토"
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "A003",
+      "case_type": "missing_information",
+      "expected_verdict": "판단 보류",
+      "actual_verdict": "판단 보류",
+      "correct": true,
+      "latency_ms": 0.006,
+      "matched_criteria": [],
+      "missing_fields": [
+        "usage_domain",
+        "ai_role",
+        "decision_consequence",
+        "output_used_in_score",
+        "automatic_decision",
+        "human_review_process",
+        "human_final_decision",
+        "human_can_override",
+        "provided_to_third_party"
+      ]
+    },
+    {
+      "id": "A004",
+      "case_type": "boundary_score",
+      "expected_verdict": "판단 보류",
+      "actual_verdict": "판단 보류",
+      "correct": true,
+      "latency_ms": 0.028,
+      "matched_criteria": [
+        "법정 활용 영역: 채용·대출 심사",
+        "AI의 의사결정 관여: 평가 반영",
+        "사람의 검토: 실질적 검토"
+      ],
+      "missing_fields": []
+    },
+    {
+      "id": "A005",
+      "case_type": "outside_domain",
+      "expected_verdict": "해당 가능성 낮음",
+      "actual_verdict": "해당 가능성 낮음",
+      "correct": true,
+      "latency_ms": 0.025,
+      "matched_criteria": [],
+      "missing_fields": []
+    },
+    {
+      "id": "A006",
+      "case_type": "boundary_recommendation",
+      "expected_verdict": "판단 보류",
+      "actual_verdict": "판단 보류",
+      "correct": true,
+      "latency_ms": 0.026,
+      "matched_criteria": [
+        "법정 활용 영역: 채용·대출 심사",
+        "AI의 의사결정 관여: 보조 자료",
+        "사람의 검토: 제한적 또는 형식적 검토"
+      ],
+      "missing_fields": []
+    }
+  ]
+}
