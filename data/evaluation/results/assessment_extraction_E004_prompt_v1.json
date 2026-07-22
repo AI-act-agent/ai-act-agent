@@ -1,0 +1,120 @@
+{
+  "summary": {
+    "case_count": 1,
+    "complete_case_accuracy": 1.0,
+    "field_accuracy": 1.0,
+    "boolean_accuracy": 1.0,
+    "text_keyword_accuracy": 1.0,
+    "null_accuracy": null,
+    "error_count": 0,
+    "average_latency_ms": 2275.54,
+    "estimated_api_calls": 1
+  },
+  "results": [
+    {
+      "id": "E004",
+      "total_checks": 9,
+      "correct_checks": 9,
+      "case_correct": true,
+      "check_counts": {
+        "boolean": 5,
+        "text_keywords": 4,
+        "null": 0
+      },
+      "correct_counts": {
+        "boolean": 5,
+        "text_keywords": 4,
+        "null": 0
+      },
+      "field_results": [
+        {
+          "field": "output_used_in_score",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "automatic_decision",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "human_final_decision",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "human_can_override",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "provided_to_third_party",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "usage_domain",
+          "check_type": "text_keywords",
+          "expected": [
+            "채용"
+          ],
+          "actual": "채용",
+          "correct": true
+        },
+        {
+          "field": "ai_role",
+          "check_type": "text_keywords",
+          "expected": [
+            "점수"
+          ],
+          "actual": "지원자 평가 점수 산정",
+          "correct": true
+        },
+        {
+          "field": "decision_consequence",
+          "check_type": "text_keywords",
+          "expected": [
+            "평가"
+          ],
+          "actual": "AI 점수는 지원자 평가 자료로 사용되며, 최종 합격·탈락 결정에 이용됨",
+          "correct": true
+        },
+        {
+          "field": "human_review_process",
+          "check_type": "text_keywords",
+          "expected": [
+            "검토"
+          ],
+          "actual": "고객사 담당자가 원문과 AI 점수를 검토",
+          "correct": true
+        }
+      ],
+      "extracted_output": {
+        "system_name": "고객사용 채용 평가 AI",
+        "system_description": "당사가 개발한 채용 AI 서비스를 고객사에 제공합니다. AI는 지원자 평가 점수를 산정하지만 자동 합격이나 탈락은 결정하지 않습니다. 고객사 담당자가 원문과 AI 점수를 검토한 뒤 최종 결정하며 AI 점수를 변경하거나 거부할 수 있습니다.",
+        "usage_domain": "채용",
+        "ai_role": "지원자 평가 점수 산정",
+        "decision_consequence": "AI 점수는 지원자 평가 자료로 사용되며, 최종 합격·탈락 결정에 이용됨",
+        "output_used_in_score": true,
+        "automatic_decision": false,
+        "human_review_process": "고객사 담당자가 원문과 AI 점수를 검토",
+        "human_final_decision": true,
+        "human_can_override": true,
+        "provided_to_third_party": true
+      },
+      "latency_ms": 2275.54,
+      "estimated_api_calls": 1,
+      "error": null
+    }
+  ]
+}

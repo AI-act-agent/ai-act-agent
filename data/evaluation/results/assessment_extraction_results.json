@@ -1,0 +1,433 @@
+{
+  "summary": {
+    "case_count": 4,
+    "complete_case_accuracy": 0.5,
+    "field_accuracy": 0.9166666666666666,
+    "boolean_accuracy": 1.0,
+    "text_keyword_accuracy": 0.7692307692307693,
+    "null_accuracy": 1.0,
+    "error_count": 0,
+    "average_latency_ms": 2134.3775,
+    "estimated_api_calls": 4
+  },
+  "results": [
+    {
+      "id": "E001",
+      "total_checks": 9,
+      "correct_checks": 8,
+      "case_correct": false,
+      "check_counts": {
+        "boolean": 5,
+        "text_keywords": 4,
+        "null": 0
+      },
+      "correct_counts": {
+        "boolean": 5,
+        "text_keywords": 3,
+        "null": 0
+      },
+      "field_results": [
+        {
+          "field": "output_used_in_score",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "automatic_decision",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "human_final_decision",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "human_can_override",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "provided_to_third_party",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "usage_domain",
+          "check_type": "text_keywords",
+          "expected": [
+            "채용"
+          ],
+          "actual": "채용 서류전형",
+          "correct": true
+        },
+        {
+          "field": "ai_role",
+          "check_type": "text_keywords",
+          "expected": [
+            "점수",
+            "탈락"
+          ],
+          "actual": "자기소개서 분석 및 점수 산정",
+          "correct": false
+        },
+        {
+          "field": "decision_consequence",
+          "check_type": "text_keywords",
+          "expected": [
+            "탈락"
+          ],
+          "actual": "70점 미만 지원자 탈락",
+          "correct": true
+        },
+        {
+          "field": "human_review_process",
+          "check_type": "text_keywords",
+          "expected": [
+            "검토",
+            "없"
+          ],
+          "actual": "검토 없음",
+          "correct": true
+        }
+      ],
+      "extracted_output": {
+        "system_name": "자동 채용 AI",
+        "system_description": "당사 채용 서류전형에서 AI가 자기소개서를 분석해 점수를 산정하고 70점 미만 지원자를 자동 탈락시킵니다. 탈락 전에 사람이 검토하지 않으며 AI 결과를 변경할 수 없습니다. 외부에는 제공하지 않습니다.",
+        "usage_domain": "채용 서류전형",
+        "ai_role": "자기소개서 분석 및 점수 산정",
+        "decision_consequence": "70점 미만 지원자 탈락",
+        "output_used_in_score": true,
+        "automatic_decision": true,
+        "human_review_process": "검토 없음",
+        "human_final_decision": false,
+        "human_can_override": false,
+        "provided_to_third_party": false
+      },
+      "latency_ms": 2752.05,
+      "estimated_api_calls": 1,
+      "error": null
+    },
+    {
+      "id": "E002",
+      "total_checks": 9,
+      "correct_checks": 9,
+      "case_correct": true,
+      "check_counts": {
+        "boolean": 5,
+        "text_keywords": 4,
+        "null": 0
+      },
+      "correct_counts": {
+        "boolean": 5,
+        "text_keywords": 4,
+        "null": 0
+      },
+      "field_results": [
+        {
+          "field": "output_used_in_score",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "automatic_decision",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "human_final_decision",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "human_can_override",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "provided_to_third_party",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "usage_domain",
+          "check_type": "text_keywords",
+          "expected": [
+            "채용"
+          ],
+          "actual": "채용",
+          "correct": true
+        },
+        {
+          "field": "ai_role",
+          "check_type": "text_keywords",
+          "expected": [
+            "요약"
+          ],
+          "actual": "자기소개서 요약 및 면접 참고자료 제공",
+          "correct": true
+        },
+        {
+          "field": "decision_consequence",
+          "check_type": "text_keywords",
+          "expected": [
+            "참고"
+          ],
+          "actual": "면접 평가의 참고자료로 활용",
+          "correct": true
+        },
+        {
+          "field": "human_review_process",
+          "check_type": "text_keywords",
+          "expected": [
+            "원문",
+            "평가"
+          ],
+          "actual": "면접위원이 자기소개서 원문을 직접 확인하고 독립적으로 최종 평가함",
+          "correct": true
+        }
+      ],
+      "extracted_output": {
+        "system_name": "채용 보조 AI",
+        "system_description": "AI는 자기소개서를 요약해 면접위원에게 참고자료로 제공합니다. 면접위원은 자기소개서 원문을 직접 확인하고 AI 요약과 관계없이 독립적으로 최종 평가하며 AI 결과를 수정하거나 거부할 수 있습니다. 외부 기관에는 제공하지 않습니다.",
+        "usage_domain": "채용",
+        "ai_role": "자기소개서 요약 및 면접 참고자료 제공",
+        "decision_consequence": "면접 평가의 참고자료로 활용",
+        "output_used_in_score": false,
+        "automatic_decision": false,
+        "human_review_process": "면접위원이 자기소개서 원문을 직접 확인하고 독립적으로 최종 평가함",
+        "human_final_decision": true,
+        "human_can_override": true,
+        "provided_to_third_party": false
+      },
+      "latency_ms": 2385.48,
+      "estimated_api_calls": 1,
+      "error": null
+    },
+    {
+      "id": "E003",
+      "total_checks": 9,
+      "correct_checks": 9,
+      "case_correct": true,
+      "check_counts": {
+        "boolean": 5,
+        "text_keywords": 1,
+        "null": 3
+      },
+      "correct_counts": {
+        "boolean": 5,
+        "text_keywords": 1,
+        "null": 3
+      },
+      "field_results": [
+        {
+          "field": "output_used_in_score",
+          "check_type": "boolean",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        },
+        {
+          "field": "automatic_decision",
+          "check_type": "boolean",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        },
+        {
+          "field": "human_final_decision",
+          "check_type": "boolean",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        },
+        {
+          "field": "human_can_override",
+          "check_type": "boolean",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        },
+        {
+          "field": "provided_to_third_party",
+          "check_type": "boolean",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        },
+        {
+          "field": "usage_domain",
+          "check_type": "text_keywords",
+          "expected": [
+            "채용"
+          ],
+          "actual": "채용",
+          "correct": true
+        },
+        {
+          "field": "ai_role",
+          "check_type": "null",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        },
+        {
+          "field": "decision_consequence",
+          "check_type": "null",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        },
+        {
+          "field": "human_review_process",
+          "check_type": "null",
+          "expected": null,
+          "actual": null,
+          "correct": true
+        }
+      ],
+      "extracted_output": {
+        "system_name": "채용 AI",
+        "system_description": "채용 업무에 AI를 활용하려고 합니다.",
+        "usage_domain": "채용",
+        "ai_role": null,
+        "decision_consequence": null,
+        "output_used_in_score": null,
+        "automatic_decision": null,
+        "human_review_process": null,
+        "human_final_decision": null,
+        "human_can_override": null,
+        "provided_to_third_party": null
+      },
+      "latency_ms": 1859.74,
+      "estimated_api_calls": 1,
+      "error": null
+    },
+    {
+      "id": "E004",
+      "total_checks": 9,
+      "correct_checks": 7,
+      "case_correct": false,
+      "check_counts": {
+        "boolean": 5,
+        "text_keywords": 4,
+        "null": 0
+      },
+      "correct_counts": {
+        "boolean": 5,
+        "text_keywords": 2,
+        "null": 0
+      },
+      "field_results": [
+        {
+          "field": "output_used_in_score",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "automatic_decision",
+          "check_type": "boolean",
+          "expected": false,
+          "actual": false,
+          "correct": true
+        },
+        {
+          "field": "human_final_decision",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "human_can_override",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "provided_to_third_party",
+          "check_type": "boolean",
+          "expected": true,
+          "actual": true,
+          "correct": true
+        },
+        {
+          "field": "usage_domain",
+          "check_type": "text_keywords",
+          "expected": [
+            "채용"
+          ],
+          "actual": "채용 평가",
+          "correct": true
+        },
+        {
+          "field": "ai_role",
+          "check_type": "text_keywords",
+          "expected": [
+            "점수"
+          ],
+          "actual": "지원자 평가 점수 산정",
+          "correct": true
+        },
+        {
+          "field": "decision_consequence",
+          "check_type": "text_keywords",
+          "expected": [
+            "평가"
+          ],
+          "actual": null,
+          "correct": false
+        },
+        {
+          "field": "human_review_process",
+          "check_type": "text_keywords",
+          "expected": [
+            "검토",
+            "최종"
+          ],
+          "actual": "고객사 담당자가 원문과 AI 점수를 검토",
+          "correct": false
+        }
+      ],
+      "extracted_output": {
+        "system_name": "고객사용 채용 평가 AI",
+        "system_description": "당사가 개발한 채용 AI 서비스를 고객사에 제공합니다. AI는 지원자 평가 점수를 산정하지만 자동 합격이나 탈락은 결정하지 않습니다. 고객사 담당자가 원문과 AI 점수를 검토한 뒤 최종 결정하며 AI 점수를 변경하거나 거부할 수 있습니다.",
+        "usage_domain": "채용 평가",
+        "ai_role": "지원자 평가 점수 산정",
+        "decision_consequence": null,
+        "output_used_in_score": true,
+        "automatic_decision": false,
+        "human_review_process": "고객사 담당자가 원문과 AI 점수를 검토",
+        "human_final_decision": true,
+        "human_can_override": true,
+        "provided_to_third_party": true
+      },
+      "latency_ms": 1540.24,
+      "estimated_api_calls": 1,
+      "error": null
+    }
+  ]
+}

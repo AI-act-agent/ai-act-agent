@@ -1,0 +1,101 @@
+[
+  {
+    "id": "A001",
+    "case_type": "clear_high",
+    "expected_verdict": "해당 가능성 높음",
+    "input": {
+      "system_name": "자동 채용 AI",
+      "system_description": "AI 점수가 70점 미만이면 지원자를 자동 탈락시킵니다.",
+      "usage_domain": "채용 서류전형",
+      "ai_role": "지원자 점수 산정 및 자동 탈락",
+      "decision_consequence": "지원자의 채용 절차 종료",
+      "output_used_in_score": true,
+      "automatic_decision": true,
+      "human_review_process": "자동 탈락 전에 사람의 검토가 없음",
+      "human_final_decision": false,
+      "human_can_override": false,
+      "provided_to_third_party": false
+    }
+  },
+  {
+    "id": "A002",
+    "case_type": "clear_low",
+    "expected_verdict": "해당 가능성 낮음",
+    "input": {
+      "system_name": "채용 보조 AI",
+      "system_description": "AI가 자기소개서를 요약하고 면접위원이 독립적으로 평가합니다.",
+      "usage_domain": "채용 서류전형",
+      "ai_role": "자기소개서 요약",
+      "decision_consequence": "면접위원 참고자료",
+      "output_used_in_score": false,
+      "automatic_decision": false,
+      "human_review_process": "면접위원이 원문을 확인하고 독립적으로 평가",
+      "human_final_decision": true,
+      "human_can_override": true,
+      "provided_to_third_party": false
+    }
+  },
+  {
+    "id": "A003",
+    "case_type": "missing_information",
+    "expected_verdict": "판단 보류",
+    "input": {
+      "system_name": "채용 AI",
+      "system_description": "채용 업무에 AI를 활용합니다."
+    }
+  },
+  {
+    "id": "A004",
+    "case_type": "boundary_score",
+    "expected_verdict": "판단 보류",
+    "input": {
+      "system_name": "지원자 점수 AI",
+      "system_description": "AI 점수가 채용 평가에 반영되지만 사람이 최종 결정합니다.",
+      "usage_domain": "채용 서류전형",
+      "ai_role": "지원자 점수 산정",
+      "decision_consequence": "채용 평가 점수에 반영",
+      "output_used_in_score": true,
+      "automatic_decision": false,
+      "human_review_process": "담당자가 AI 점수와 원문을 함께 검토",
+      "human_final_decision": true,
+      "human_can_override": true,
+      "provided_to_third_party": false
+    }
+  },
+  {
+    "id": "A005",
+    "case_type": "outside_domain",
+    "expected_verdict": "해당 가능성 낮음",
+    "input": {
+      "system_name": "광고 문구 AI",
+      "system_description": "AI가 상품 광고 문구 초안을 작성합니다.",
+      "usage_domain": "상품 마케팅",
+      "ai_role": "광고 문구 초안 작성",
+      "decision_consequence": "담당자의 문구 작성 보조",
+      "output_used_in_score": false,
+      "automatic_decision": false,
+      "human_review_process": "담당자가 검토하고 수정한 뒤 게시",
+      "human_final_decision": true,
+      "human_can_override": true,
+      "provided_to_third_party": false
+    }
+  },
+  {
+    "id": "A006",
+    "case_type": "boundary_recommendation",
+    "expected_verdict": "판단 보류",
+    "input": {
+      "system_name": "채용 추천 AI",
+      "system_description": "AI가 면접 대상자를 추천하며 담당자는 추천 명단 안에서만 최종 선발합니다.",
+      "usage_domain": "채용 서류전형",
+      "ai_role": "면접 대상자 추천",
+      "decision_consequence": "추천되지 않은 지원자는 면접 검토 대상에서 제외",
+      "output_used_in_score": false,
+      "automatic_decision": false,
+      "human_review_process": "담당자가 추천 명단 안에서 최종 결정",
+      "human_final_decision": true,
+      "human_can_override": false,
+      "provided_to_third_party": false
+    }
+  }
+]
