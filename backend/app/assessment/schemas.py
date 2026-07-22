@@ -46,3 +46,12 @@ class AssessmentResult:
     recommendations: list[str] = field(
         default_factory=list
     )
+
+@dataclass
+class AssessmentWorkflowResult:
+    """사전 검토 워크플로의 한 번의 실행 결과."""
+
+    assessment_input: AssessmentInput
+    assessment_result: AssessmentResult
+    next_field: str | None = None
+    next_question: str | None = None

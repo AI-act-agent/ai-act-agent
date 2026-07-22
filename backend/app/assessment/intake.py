@@ -106,3 +106,18 @@ def build_next_followup_question(
             return FOLLOWUP_QUESTIONS[field_name]
 
     return None
+
+def find_next_missing_field(
+    assessment_input: AssessmentInput,
+) -> str | None:
+    """다음으로 입력받아야 할 필드명을 반환한다."""
+
+    missing_fields = set(
+        find_missing_fields(assessment_input)
+    )
+
+    for field_name in FOLLOWUP_PRIORITY:
+        if field_name in missing_fields:
+            return field_name
+
+    return None
