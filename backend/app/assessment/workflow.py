@@ -133,3 +133,27 @@ def continue_assessment(
     return _build_workflow_result(
         updated_input
     )
+
+def finalize_assessment(
+    workflow_result: AssessmentWorkflowResult,
+    top_k: int = 5,
+) -> AssessmentWorkflowResult:
+    """입력이 완료된 사전 검토에 법령 근거를 연결한다."""
+
+    if (
+        workflow_result.next_field is not None
+        or workflow_result.assessment_result.missing_fields
+    ):
+        raise ValueError(
+            "추가 질문에 모두 답변한 뒤 사전 검토를 "
+            "최종 확정해 주세요."
+        )
+
+    from backend.app.assessment.evidence import (
+        attach_assessment_evidence,
+    )
+
+    return attach_assessment_evidence(
+        workflow_result=workflow_result,
+        top_k=top_k,
+    )
