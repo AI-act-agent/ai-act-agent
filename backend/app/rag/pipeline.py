@@ -239,9 +239,12 @@ def build_vector_store(
     return records
 
 
+@lru_cache(maxsize=2)
 def load_vector_store(
     vector_store_path=VECTOR_STORE_PATH
 ):
+    # 8MB 벡터스토어를 요청마다 디스크에서 다시 읽지 않도록 메모리에 캐시.
+    # 재빌드 후에는 서버를 재시작해야 반영된다.
     path = Path(vector_store_path)
 
     if not path.exists():

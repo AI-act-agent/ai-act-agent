@@ -17,7 +17,6 @@ from backend.app.agent.schemas import AgentResult
 
 
 
-
 def _plan_query(question: str) -> tuple[str, bool]:
     """검색어 생성. LLM 계획 실패 시 원 질문을 그대로 사용한다."""
     try:
@@ -29,12 +28,36 @@ def _plan_query(question: str) -> tuple[str, bool]:
     return question, False
 
 
-def _retrieve(query: str):
-    """실제 RAG 검색. 실패 시 mock으로 폴백한다."""
-    try:
-        return retrieve_evidence(query, top_k=5)
-    except Exception:
-        return mock_retrieve(query)
+def _retrieve(queries: list[str], top_k: int = 6):
+    """여러 검색어로 검색해 병합한다.
+
+    LLM 계획 검색어는 질문을 일반화하며 핵심 키워드(예: '채용')를 잃기도 하므로,
+    원 질문과 계획 검색어를 함께 검색해 근거 누락을 줄인다.
+    """
+    # 검색어별 결과 리스트
+    per_query = []
+    for query in queries:
+        try:
+            per_query.append(retrieve_evidence(query, top_k=top_k))
+        except Exception:
+            per_query.append([])
+
+    # round-robin 병합: 점수는 검색어마다 스케일이 달라(일반화 질의가 고득점) 단순 정렬 시
+    # 특정 키워드 질의의 관련 근거가 밀려난다. 각 검색어 상위 결과를 번갈아 넣어 대표성을 보장한다.
+    merged: dict[str, object] = {}
+    order: list[str] = []
+    for rank in range(top_k):
+        for results in per_query:
+            if rank < len(results):
+                e = results[rank]
+                if e.article_id not in merged:
+                    merged[e.article_id] = e
+                    order.append(e.article_id)
+
+    if not merged:
+        return mock_retrieve(queries[0] if queries else "")
+
+    return [merged[aid] for aid in order][:top_k]
 
 
 def _template_answer(evidence) -> dict[str, str]:
@@ -89,13 +112,29 @@ def run_agent(question: str) -> AgentResult:
         ),
     ]
 
-    evidence = _retrieve(search_query)
+    queries = [question]
+
+    if (
+        planned
+        and search_query
+        and search_query != question
+    ):
+        queries.append(search_query)
+
+    evidence = _retrieve(
+        queries,
+        top_k=6,
+    )
     steps.append(
-        f"조문 검색 1회 → {len(evidence)}건"
+        "조문 검색 1회 "
+        f"(검색어 {len(queries)}개) "
+        f"→ {len(evidence)}건"
     )
 
     if not evidence:
-        steps.append("검색 근거 없음: 판단 보류")
+        steps.append(
+            "검색 근거 없음: 판단 보류"
+        )
 
         return AgentResult(
             verdict="판단 보류",
