@@ -136,7 +136,7 @@ def continue_assessment(
 
 def finalize_assessment(
     workflow_result: AssessmentWorkflowResult,
-    top_k: int = 5,
+    top_k: int = 3,
 ) -> AssessmentWorkflowResult:
     """입력이 완료된 사전 검토에 법령 근거를 연결한다."""
 

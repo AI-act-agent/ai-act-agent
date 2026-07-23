@@ -8,6 +8,7 @@ from backend.app.assessment.report import (
 )
 from backend.app.assessment.workflow import (
     continue_assessment,
+    finalize_assessment,
     start_assessment,
 )
 
@@ -26,8 +27,8 @@ def run_cli() -> int:
     print("고영향 AI 사전 검토")
     print("=" * 40)
     print(
-        "현재는 규칙 기반 판정과 보고서 형식을 "
-        "확인하는 미리보기입니다."
+        "입력 내용을 구조화하고 규칙 기반 판정과 "
+        "법령·가이드라인 근거를 연결합니다."
     )
     print(
         "법령·가이드라인 RAG 근거는 벡터 저장소 "
@@ -71,6 +72,21 @@ def run_cli() -> int:
             print(error)
 
     print()
+    print()
+    print(
+        "법령·가이드라인 근거를 검색하고 있습니다."
+    )
+
+    try:
+        workflow_result = finalize_assessment(
+            workflow_result
+        )
+    except Exception as error:
+        print(
+            "법령 근거를 연결하지 못했습니다: "
+            f"{error}"
+        )
+        return 1
     print("사전 검토가 완료되었습니다.")
     print(
         "검토 결과: "

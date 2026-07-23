@@ -20,6 +20,7 @@ from backend.app.assessment.report import (
 from backend.app.assessment.workflow import (
     BOOLEAN_FOLLOWUP_FIELDS,
     continue_assessment,
+    finalize_assessment,
     start_assessment,
 )
 
@@ -101,6 +102,10 @@ def reset_assessment() -> None:
         "assessment_error",
         None,
     )
+    st.session_state.pop(
+        "evidence_finalized",
+        None,
+    )
 
 
 st.markdown(
@@ -124,8 +129,8 @@ st.markdown(
     <div class="notice-box">
     현재 결과는 입력 정보에 기반한 사전 검토 자료입니다.
     정부의 공식 확인이나 법률 자문을 대신하지 않습니다.
-    법령·가이드라인 RAG 근거는 최종 벡터 저장소 갱신 후
-    연결됩니다.
+    검토 결과에는 관련 법령과 가이드라인 검색 근거가
+    함께 제공됩니다.
     </div>
     """,
     unsafe_allow_html=True,
@@ -136,6 +141,9 @@ if "workflow_result" not in st.session_state:
 
 if "assessment_error" not in st.session_state:
     st.session_state.assessment_error = None
+
+if "evidence_finalized" not in st.session_state:
+    st.session_state.evidence_finalized = False
 
 workflow_result = st.session_state.workflow_result
 
@@ -277,6 +285,32 @@ else:
             st.rerun()
 
     else:
+        if not st.session_state.evidence_finalized:
+            with st.spinner(
+                "법령·가이드라인 근거를 "
+                "검색하고 있습니다..."
+            ):
+                try:
+                    workflow_result = (
+                        finalize_assessment(
+                            workflow_result
+                        )
+                    )
+
+                    st.session_state.workflow_result = (
+                        workflow_result
+                    )
+                    st.session_state.evidence_finalized = (
+                        True
+                    )
+
+                except Exception as error:
+                    st.error(
+                        "법령 근거를 연결하지 못했습니다: "
+                        f"{error}"
+                    )
+                    st.stop()
+
         assessment_input = (
             workflow_result.assessment_input
         )
@@ -362,9 +396,9 @@ else:
                         f"출처: {citation.source_url}"
                     )
         else:
-            st.info(
-                "법령·가이드라인 RAG 근거는 "
-                "벡터 저장소 갱신 후 표시됩니다."
+            st.warning(
+                "현재 입력과 직접 관련된 법령·가이드라인 "
+                "근거를 찾지 못했습니다."
             )
 
         report_text = build_assessment_report(
