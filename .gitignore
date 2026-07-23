@@ -3,3 +3,6 @@
 __pycache__/
 *.pyc
 data/vector_store/
+
+# 소스 PDF (용량 큼 - 전처리 산출물 jsonl만 커밋)
+*.pdf
