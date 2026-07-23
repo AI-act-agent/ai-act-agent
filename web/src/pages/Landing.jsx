@@ -35,11 +35,15 @@ export default function Landing() {
           <nav className="nav-links">
             <a href="#how">서비스 소개</a>
             <a href="#features">주요 기능</a>
-            <a href="#how">활용 사례</a>
+            <Link to="/ask">법령 Q&amp;A</Link>
             <a href="#footer">문의</a>
           </nav>
-          <Link className="btn btn-primary btn-sm" to="/ask">
-            무료로 시작하기
+
+          <Link
+            className="btn btn-primary btn-sm"
+            to="/assessment"
+          >
+            사전 검토 시작
           </Link>
         </div>
       </header>
@@ -61,8 +65,11 @@ export default function Landing() {
               법 조항과 가이드라인을 근거로 정확한 답변을 드립니다.
             </p>
             <div className="hero-actions">
-              <Link className="btn btn-primary" to="/ask">
-                지금 질문하기
+              <Link
+                className="btn btn-primary"
+                to="/assessment"
+              >
+                고영향 AI 사전 검토
               </Link>
               <a className="btn btn-ghost" href="#features">
                 기능 살펴보기 →
@@ -180,8 +187,11 @@ export default function Landing() {
         <div className="wrap">
           <h2>지금 바로 물어보세요</h2>
           <p>로그인 없이 즉시 사용 가능 · AI기본법 전문 QA 에이전트</p>
-          <Link className="btn btn-primary" to="/ask">
-            무료로 시작하기 →
+          <Link
+            className="btn btn-primary"
+            to="/assessment"
+          >
+            무료 사전 검토 시작 →
           </Link>
         </div>
       </section>

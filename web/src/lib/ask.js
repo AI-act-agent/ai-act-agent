@@ -1,55 +1,90 @@
-// 질문 → 답변 로직. 백엔드(/api/ask)의 실제 에이전트 답변만 사용한다.
-// (데모 답변 폴백 없음 — 실패는 실패로 표시해야 진짜 답변과 구분된다.)
+// 질문 → 실제 백엔드 에이전트 답변.
+// 데모 답변은 사용하지 않으며 실패를 명확하게 표시한다.
 
-// 에이전트는 계획→검색→생성→검증을 거치므로 40초 이상 걸리는 경우가 있다.
 const TIMEOUT_MS = 180_000;
 
+
 export function inferLevel(verdict = "") {
-  if (/높음|해당|고영향/.test(verdict) && !/안 함|아님|낮음/.test(verdict)) return "high";
-  if (/낮음|해당 안|아님|보류/.test(verdict)) return "low";
+  if (
+    /낮음|비해당|해당 안|아님|안 함/.test(
+      verdict
+    )
+  ) {
+    return "low";
+  }
+
+  if (
+    /높음|고영향/.test(verdict)
+  ) {
+    return "high";
+  }
+
   return "hold";
 }
+
 
 export async function askQuestion(question) {
   try {
     return await callApi(question);
-  } catch (e) {
-    return errorAnswer(e);
+  } catch (error) {
+    return errorAnswer(error);
   }
 }
 
+
 async function callApi(question) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  const timer = setTimeout(
+    () => controller.abort(),
+    TIMEOUT_MS,
+  );
 
-  let res;
+  let response;
+
   try {
-    res = await fetch("/api/ask", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // ngrok 무료 터널이 끼워 넣는 경고 페이지(HTML) 우회 — 로컬에서는 무시된다
-        "ngrok-skip-browser-warning": "true",
+    response = await fetch(
+      "/api/ask",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true",
+        },
+        body: JSON.stringify({
+          question,
+        }),
+        signal: controller.signal,
       },
-      body: JSON.stringify({ question }),
-      signal: controller.signal,
-    });
-  } catch (e) {
-    if (e.name === "AbortError") throw new Error("답변 생성이 너무 오래 걸려 중단했습니다.");
-    throw new Error("서버에 연결하지 못했습니다. API 서버가 실행 중인지 확인해 주세요.");
+    );
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error(
+        "답변 생성 시간이 초과되었습니다."
+      );
+    }
+
+    throw new Error(
+      "서버에 연결하지 못했습니다. "
+      + "FastAPI 서버 상태를 확인해 주세요."
+    );
   } finally {
     clearTimeout(timer);
   }
 
-  if (!res.ok) {
-    const detail = await res
+  if (!response.ok) {
+    const detail = await response
       .json()
-      .then((d) => d.detail)
+      .then((data) => data.detail)
       .catch(() => null);
-    throw new Error(detail || `서버 오류 (HTTP ${res.status})`);
+
+    throw new Error(
+      detail
+      || `서버 오류 (HTTP ${response.status})`
+    );
   }
 
-  const data = await res.json();
+  const data = await response.json();
+
   return {
     verdict: data.verdict,
     answer: data.answer,
@@ -61,16 +96,16 @@ async function callApi(question) {
   };
 }
 
-function errorAnswer(e) {
+
+function errorAnswer(error) {
   return {
-    verdict: "⚠ 답변을 가져오지 못했습니다",
-    level: "low",
-    answer:
-      `${e.message}\n\n` +
-      "서버 실행:\n" +
-      "  pip install -r requirements-api.txt\n" +
-      "  uvicorn backend.app.api.server:app --reload --port 8000",
-    confidence: "",
+    verdict: "답변을 가져오지 못했습니다",
+    level: "hold",
+    answer: (
+      "실제 에이전트 답변을 불러오지 못했습니다. "
+      + error.message
+    ),
+    confidence: "응답 실패",
     citations: [],
     steps: [],
     isError: true,

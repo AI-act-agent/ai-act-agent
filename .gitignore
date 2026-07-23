@@ -13,3 +13,6 @@ data/processed/all_chunks.json
 web/node_modules/
 web/dist/
 data/evaluation/test_cases.backup.json
+
+# PowerPoint temporary lock files
+~$*.pptx

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import AssessmentReportView from "../components/AssessmentReportView.jsx";
+
 import AnswerCard from "../components/AnswerCard.jsx";
 import {
   continueAssessment,
@@ -439,64 +441,11 @@ export default function Assessment() {
         )}
 
         {workflow?.status === "completed" && (
-          <>
-            <AnswerCard
-              result={buildAnswerCardResult(workflow)}
-            />
-
-            <div
-              className="answer-card"
-              style={{ marginTop: 20 }}
-            >
-              <details>
-                <summary
-                  style={{
-                    cursor: "pointer",
-                    fontWeight: 700,
-                  }}
-                >
-                  전체 보고서 보기
-                </summary>
-
-                <pre
-                  style={{
-                    marginTop: 20,
-                    whiteSpace: "pre-wrap",
-                    wordBreak: "keep-all",
-                    lineHeight: 1.7,
-                    fontFamily: "inherit",
-                  }}
-                >
-                  {workflow.report}
-                </pre>
-              </details>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                gap: 12,
-                marginTop: 20,
-                flexWrap: "wrap",
-              }}
-            >
-              <button
-                className="btn btn-primary"
-                type="button"
-                onClick={handleDownload}
-              >
-                Markdown 보고서 다운로드
-              </button>
-
-              <button
-                className="btn btn-ghost"
-                type="button"
-                onClick={handleReset}
-              >
-                새로운 시스템 검토
-              </button>
-            </div>
-          </>
+          <AssessmentReportView
+            workflow={workflow}
+            onDownload={handleDownload}
+            onReset={handleReset}
+          />
         )}
 
         {workflow
