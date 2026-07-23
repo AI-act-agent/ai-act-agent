@@ -35,7 +35,7 @@ DEFAULT_CHUNKS_PATH = (
     PROJECT_ROOT
     / "data"
     / "processed"
-    / "law_chunks.json"
+    / "rag_chunks.json"
 )
 
 VECTOR_STORE_PATH = (
@@ -448,9 +448,14 @@ def make_chunk_index(records):
 def expand_references(
     search_results,
     chunk_index,
-    max_total=8,
-    max_depth=2
+    max_total=None,
+    max_depth=2,
 ):
+    if max_total is None:
+        max_total = (
+            len(search_results) + 3
+        )
+
     expanded = []
     visited = set()
 

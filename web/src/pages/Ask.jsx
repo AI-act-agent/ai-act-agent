@@ -50,7 +50,9 @@ export default function Ask() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(scrollToEnd, [messages, typing]);
+  useEffect(() => {
+    scrollToEnd();
+  }, [messages, typing]);
 
   return (
     <div className="ask-page">
