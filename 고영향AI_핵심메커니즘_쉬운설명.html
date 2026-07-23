@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #0d1117; color: #e0e6f0; padding: 24px; }
+
+h1 { font-size: 17px; font-weight: 800; text-align: center; color: #ffffff; margin-bottom: 4px; }
+.sub { text-align: center; font-size: 11px; color: #4a6080; margin-bottom: 28px; }
+
+/* NAV TABS */
+.tabs { display: flex; gap: 6px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+.tab {
+  padding: 8px 18px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer;
+  border: 1px solid #2a3a4a; color: #6a8aaa; background: #111820; transition: all 0.2s;
+}
+.tab.active { background: #1a3a6a; color: #80c0ff; border-color: #3a6aaa; }
+
+/* PAGES */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ANALOGY PAGE */
+.analogy-intro {
+  background: linear-gradient(135deg, #111a2a, #0d1520);
+  border: 1px solid #1e3050; border-radius: 14px; padding: 20px 24px; margin-bottom: 16px;
+  text-align: center;
+}
+.analogy-intro .big { font-size: 32px; margin-bottom: 8px; }
+.analogy-intro h2 { font-size: 15px; font-weight: 800; color: #ffffff; margin-bottom: 6px; }
+.analogy-intro p { font-size: 12px; color: #7a9aba; line-height: 1.7; }
+
+.analogy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.analogy-card {
+  border-radius: 12px; padding: 18px; border: 1px solid;
+}
+.a-filter1 { border-color: #e05c4044; background: #180e0a; }
+.a-filter2 { border-color: #4080f044; background: #0a1018; }
+
+.a-icon { font-size: 28px; margin-bottom: 8px; }
+.a-stage { font-size: 9px; font-weight: 800; letter-spacing: 1px; margin-bottom: 4px; }
+.a-filter1 .a-stage { color: #e08060; }
+.a-filter2 .a-stage { color: #6090e0; }
+.a-title { font-size: 14px; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
+.a-real { font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+.a-filter1 .a-real { color: #e09070; }
+.a-filter2 .a-real { color: #70a0e0; }
+.a-desc { font-size: 11px; color: #7a9aba; line-height: 1.6; }
+
+.a-questions { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.a-q { background: #0a1020; border-radius: 8px; padding: 8px 12px; font-size: 11px; color: #a0b8d0; border-left: 3px solid; line-height: 1.5; }
+.a-filter1 .a-q { border-color: #e08060; }
+.a-filter2 .a-q { border-color: #6090e0; }
+.a-q-label { font-size: 9px; font-weight: 800; margin-bottom: 2px; }
+.a-filter1 .a-q-label { color: #e08060; }
+.a-filter2 .a-q-label { color: #6090e0; }
+
+.key-insight {
+  background: #0a1820; border: 1px solid #2a5070; border-radius: 10px;
+  padding: 16px 20px; margin-bottom: 12px;
+}
+.ki-title { font-size: 11px; font-weight: 700; color: #60c0f0; margin-bottom: 10px; }
+.ki-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.ki-icon { font-size: 20px; width: 36px; text-align: center; flex-shrink: 0; }
+.ki-text { font-size: 11px; color: #8ab0c8; line-height: 1.5; }
+.ki-text strong { color: #c0d8f0; }
+
+/* FLOW PAGE */
+.flow { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
+.flow-step {
+  display: flex; align-items: stretch; gap: 0; position: relative;
+}
+.flow-left { width: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 12px; flex-shrink: 0; }
+.flow-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; flex-shrink: 0; }
+.flow-vline { width: 2px; flex: 1; min-height: 20px; }
+
+.flow-body {
+  flex: 1; border-radius: 12px; padding: 16px 18px; margin: 6px 0;
+}
+.flow-tag { font-size: 9px; font-weight: 800; letter-spacing: 1px; margin-bottom: 4px; }
+.flow-title { font-size: 14px; font-weight: 800; color: #ffffff; margin-bottom: 6px; }
+.flow-desc { font-size: 11px; line-height: 1.7; margin-bottom: 10px; }
+.flow-example { background: #0a1020; border-radius: 8px; padding: 10px 12px; }
+.flow-ex-label { font-size: 9px; font-weight: 700; color: #5a7aaa; margin-bottom: 4px; }
+.flow-ex-text { font-size: 11px; color: #a0c0d8; line-height: 1.5; }
+
+.step-1 .flow-num { background: #2a4a2a; color: #60d060; }
+.step-1 .flow-vline { background: linear-gradient(#2a4a2a, #2a3a5a); }
+.step-1 .flow-body { background: #0d1810; border: 1px solid #2a4a2a44; }
+.step-1 .flow-tag { color: #60d060; }
+.step-1 .flow-desc { color: #7aaa8a; }
+
+.step-2 .flow-num { background: #3a2a1a; color: #e09040; }
+.step-2 .flow-vline { background: linear-gradient(#2a3a5a, #3a2a1a); }
+.step-2 .flow-body { background: #181008; border: 1px solid #e0904044; }
+.step-2 .flow-tag { color: #e09040; }
+.step-2 .flow-desc { color: #aa8a6a; }
+
+.step-3 .flow-num { background: #1a2a4a; color: #6090e0; }
+.step-3 .flow-vline { background: linear-gradient(#3a2a1a, #1a2a4a); }
+.step-3 .flow-body { background: #080f18; border: 1px solid #6090e044; }
+.step-3 .flow-tag { color: #6090e0; }
+.step-3 .flow-desc { color: #6a8aaa; }
+
+.step-4 .flow-num { background: #3a1a2a; color: #e060a0; }
+.step-4 .flow-vline { background: linear-gradient(#1a2a4a, #3a1a2a); }
+.step-4 .flow-body { background: #180810; border: 1px solid #e060a044; }
+.step-4 .flow-tag { color: #e060a0; }
+.step-4 .flow-desc { color: #aa6a8a; }
+
+.step-5 .flow-num { background: #2a1a4a; color: #a060f0; }
+.step-5 .flow-body { background: #0e0818; border: 1px solid #a060f044; }
+.step-5 .flow-tag { color: #a060f0; }
+.step-5 .flow-desc { color: #8a6aaa; }
+
+/* WEIGHT PAGE */
+.weight-intro { font-size: 12px; color: #7a9aba; line-height: 1.7; margin-bottom: 16px; background: #0d1520; border-radius: 10px; padding: 14px 18px; border: 1px solid #1a3050; }
+.weight-intro strong { color: #a0c0e0; }
+
+.weight-cards { display: flex; flex-direction: column; gap: 10px; }
+.weight-card { border-radius: 12px; padding: 16px 18px; border: 1px solid; }
+.wc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.wc-icon { font-size: 22px; }
+.wc-info { flex: 1; }
+.wc-q { font-size: 9px; font-weight: 800; letter-spacing: 1px; margin-bottom: 2px; }
+.wc-name { font-size: 13px; font-weight: 800; color: #ffffff; }
+.wc-weight-display { text-align: right; }
+.wc-pct { font-size: 22px; font-weight: 900; line-height: 1; }
+.wc-pct-label { font-size: 8px; font-weight: 600; margin-top: 1px; }
+
+.wc-bar-wrap { height: 8px; background: #111820; border-radius: 4px; margin-bottom: 10px; overflow: hidden; }
+.wc-bar { height: 100%; border-radius: 4px; }
+.wc-why { font-size: 10px; color: #6a8aaa; line-height: 1.6; padding: 8px 10px; background: #0a1020; border-radius: 8px; }
+.wc-why strong { font-weight: 700; }
+
+.wc-1 { border-color: #60d09044; background: #0a1810; }
+.wc-1 .wc-q { color: #60d090; }
+.wc-1 .wc-pct { color: #60d090; }
+.wc-1 .wc-pct-label { color: #408060; }
+.wc-1 .wc-bar { background: #60d090; width: 15%; }
+
+.wc-2 { border-color: #f0606044; background: #18080a; }
+.wc-2 .wc-q { color: #f06060; }
+.wc-2 .wc-pct { color: #f06060; }
+.wc-2 .wc-pct-label { color: #a04040; }
+.wc-2 .wc-bar { background: #f06060; width: 15%; }
+
+.wc-3 { border-color: #60e06044; background: #0a180a; }
+.wc-3 .wc-q { color: #60e060; }
+.wc-3 .wc-pct { color: #60e060; }
+.wc-3 .wc-pct-label { color: #40a040; }
+.wc-3 .wc-bar { background: #60e060; width: 35%; }
+
+.wc-4 { border-color: #f060a044; background: #180810; }
+.wc-4 .wc-q { color: #f060a0; }
+.wc-4 .wc-pct { color: #f060a0; }
+.wc-4 .wc-pct-label { color: #a04070; }
+.wc-4 .wc-bar { background: #f060a0; width: 35%; }
+
+/* EXAMPLE PAGE */
+.ex-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.ex-subtitle { font-size: 11px; color: #5a7aaa; }
+.example-cards { display: flex; flex-direction: column; gap: 10px; }
+.ex-card { border-radius: 12px; overflow: hidden; border: 1px solid #1a3050; cursor: pointer; transition: all 0.2s; }
+.ex-card:hover { border-color: #3a6090; }
+.ex-head { padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+.ex-emoji { font-size: 22px; }
+.ex-head-info { flex: 1; }
+.ex-head-name { font-size: 13px; font-weight: 700; color: #ffffff; }
+.ex-head-desc { font-size: 10px; color: #5a7aaa; margin-top: 2px; }
+.ex-badge { font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 10px; }
+.ex-body { padding: 0 16px 14px; display: none; }
+.ex-body.open { display: block; }
+.ex-qa { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.ex-q-row { display: flex; align-items: flex-start; gap: 8px; }
+.ex-q-label { font-size: 9px; font-weight: 800; width: 20px; flex-shrink: 0; padding-top: 1px; }
+.ex-q-text { font-size: 10px; color: #7a9aba; flex: 1; }
+.ex-q-ans { font-size: 10px; font-weight: 800; padding: 1px 8px; border-radius: 6px; flex-shrink: 0; }
+.ans-y { background: #1a4a2a; color: #60d080; }
+.ans-n { background: #1a2a4a; color: #6080c0; }
+.ex-conclusion { font-size: 11px; line-height: 1.6; padding: 10px 12px; border-radius: 8px; }
+
+.ec-critical { background: #2a1518; border-left: 4px solid #e05c6a; }
+.ec-critical .ex-head { background: #1a0c10; }
+.ec-critical .ex-badge { background: #e05c6a22; color: #f08090; border: 1px solid #e05c6a; }
+.ec-critical .ex-conclusion { background: #180a0c; color: #c07080; border: 1px solid #e05c6a22; }
+
+.ec-low { background: #0f1825; border-left: 4px solid #4080f0; }
+.ec-low .ex-head { background: #080f18; }
+.ec-low .ex-badge { background: #4080f022; color: #80b0f8; border: 1px solid #4080f0; }
+.ec-low .ex-conclusion { background: #080f18; color: #6090c0; border: 1px solid #4080f022; }
+
+.ec-high { background: #201510; border-left: 4px solid #f09440; }
+.ec-high .ex-head { background: #180e08; }
+.ec-high .ex-badge { background: #f0944022; color: #f0b070; border: 1px solid #f09440; }
+.ec-high .ex-conclusion { background: #160e08; color: #c08050; border: 1px solid #f0944022; }
+
+.ec-cond { background: #1a1a10; border-left: 4px solid #d0d040; }
+.ec-cond .ex-head { background: #121208; }
+.ec-cond .ex-badge { background: #d0d04022; color: #e0e060; border: 1px solid #d0d040; }
+.ec-cond .ex-conclusion { background: #121208; color: #a0a040; border: 1px solid #d0d04022; }
+</style>
+</head>
+<body>
+
+<h1>고영향 AI 필터링 — 쉽게 이해하기</h1>
+<div class="sub">핵심 메커니즘을 비유·예시·흐름으로 설명합니다</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showPage('analogy')">🏗️ 핵심 구조</div>
+  <div class="tab" onclick="showPage('flow')">🔄 단계별 흐름</div>
+  <div class="tab" onclick="showPage('weight')">⚖️ 가중치 이유</div>
+  <div class="tab" onclick="showPage('example')">📋 실제 사례</div>
+</div>
+
+<!-- PAGE 1: ANALOGY -->
+<div class="page active" id="page-analogy">
+
+  <div class="analogy-intro">
+    <div class="big">🏥 ✈️ 🔬</div>
+    <h2>"공항 보안검색"과 똑같은 원리입니다</h2>
+    <p>공항에서 모든 사람을 동일하게 심층 검사하지 않습니다.<br>
+    <strong style="color:#c0d8f0;">1단계</strong>로 "위험 물품 소지 가능성"을 빠르게 걸러내고,<br>
+    통과한 경우에만 <strong style="color:#c0d8f0;">2단계</strong>에서 정밀 검사를 합니다.<br>
+    고영향 AI 필터링도 이 구조로 작동합니다.</p>
+  </div>
+
+  <div class="analogy-grid">
+    <div class="analogy-card a-filter1">
+      <div class="a-icon">🚪</div>
+      <div class="a-stage">1차 필터 · 입장 게이트</div>
+      <div class="a-title">"이 AI, 위험할 수 있는 분야인가?"</div>
+      <div class="a-real">→ 실제 기술 역할: 도메인 분류 + 권리영향 감지</div>
+      <div class="a-desc">X선 스캐너처럼 빠르게 훑습니다.<br>
+      "의료/채용/대출/교육/공공서비스"와 관련 있거나,<br>
+      사람의 생명·기본권에 닿으면 → <strong style="color:#f0a060;">2단계 진입</strong>.<br>
+      아무 관계도 없으면 → <strong style="color:#6080c0;">즉시 통과 (저영향)</strong>.</div>
+      <div class="a-questions">
+        <div class="a-q">
+          <div class="a-q-label">Q1 · 도메인 게이트</div>
+          의료·채용·대출·교육·공공서비스에 관여하나요?
+        </div>
+        <div class="a-q">
+          <div class="a-q-label">Q2 · 권리 게이트</div>
+          생명·신체·기본권에 직접 영향을 주나요?
+        </div>
+      </div>
+    </div>
+    <div class="analogy-card a-filter2">
+      <div class="a-icon">🔬</div>
+      <div class="a-stage">2차 필터 · 정밀 검사</div>
+      <div class="a-title">"얼마나 위험하고, 통제 가능한가?"</div>
+      <div class="a-real">→ 실제 기술 역할: 자율성 + 피해 심각도 스코어링</div>
+      <div class="a-desc">1차를 통과한 AI만 이 단계에 옵니다.<br>
+      "사람이 끼어들 수 있는가?"와<br>
+      "잘못됐을 때 얼마나 심각한가?"를 점수로 계산해<br>
+      최종 등급(CRITICAL / HIGH / 조건부 / 중/저)을 결정합니다.</div>
+      <div class="a-questions">
+        <div class="a-q">
+          <div class="a-q-label">Q3 · 자율성 게이트</div>
+          사람 검토 없이 AI가 혼자 최종 결정하나요?
+        </div>
+        <div class="a-q">
+          <div class="a-q-label">Q4 · 피해 게이트</div>
+          오작동 시 피해가 크고 되돌리기 어렵나요?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="key-insight">
+    <div class="ki-title">💡 왜 이 구조가 핵심 기술인가</div>
+    <div class="ki-row">
+      <div class="ki-icon">⚡</div>
+      <div class="ki-text"><strong>속도</strong> — 1차에서 대부분이 탈락합니다. 불필요한 심층 분석 비용을 줄입니다. 쇼핑몰 AI·음악 추천 AI는 Q1/Q2를 통과조차 못 합니다.</div>
+    </div>
+    <div class="ki-row">
+      <div class="ki-icon">🎯</div>
+      <div class="ki-text"><strong>정확성</strong> — 단순히 "의료 분야"라고 다 고영향이 아닙니다. Q3(자율성)·Q4(피해)를 봐야 합니다. 의사가 최종 결정하는 AI는 같은 의료라도 등급이 낮아집니다.</div>
+    </div>
+    <div class="ki-row">
+      <div class="ki-icon">📊</div>
+      <div class="ki-text"><strong>점수화</strong> — "예/아니오" 이분법이 아닙니다. Q3·Q4는 각각 35% 가중치로 <strong>세분화된 점수</strong>를 매겨 경계 케이스도 정확히 분류합니다.</div>
+    </div>
+    <div class="ki-row">
+      <div class="ki-icon">🔄</div>
+      <div class="ki-text"><strong>재평가</strong> — 서비스가 바뀌면 점수가 바뀝니다. 처음엔 저영향이었어도 완전 자동화를 도입하면 고영향으로 재분류됩니다.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGE 2: FLOW -->
+<div class="page" id="page-flow">
+<div class="flow">
+
+  <div class="flow-step step-1">
+    <div class="flow-left">
+      <div class="flow-num">1</div>
+      <div class="flow-vline"></div>
+    </div>
+    <div class="flow-body">
+      <div class="flow-tag">INPUT</div>
+      <div class="flow-title">AI 서비스 정보를 입력받습니다</div>
+      <div class="flow-desc" style="color:#7aaa8a;">서비스가 어떤 일을 하는지, 어떤 분야에서 쓰이는지,<br>어떻게 결정을 내리는지를 구조화된 형식으로 받습니다.</div>
+      <div class="flow-example">
+        <div class="flow-ex-label">예시 입력</div>
+        <div class="flow-ex-text">서비스명: 대출 자동심사 시스템 / 도메인: 금융 / 의사결정방식: 완전 자동 / 배포 규모: 100만 사용자</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-step step-2">
+    <div class="flow-left">
+      <div class="flow-num">2</div>
+      <div class="flow-vline"></div>
+    </div>
+    <div class="flow-body">
+      <div class="flow-tag">1차 필터 · Q1 + Q2</div>
+      <div class="flow-title">"관련 있는 분야인가?" 빠르게 확인</div>
+      <div class="flow-desc" style="color:#aa8a6a;">Q1, Q2 중 하나라도 YES면 다음 단계로 넘어갑니다.<br>둘 다 NO라면 → 즉시 <strong style="color:#6080c0;">저영향 판정</strong>으로 종료합니다.<br>이 단계는 <strong style="color:#f0c080;">빠른 탈락 게이트</strong>입니다.</div>
+      <div class="flow-example">
+        <div class="flow-ex-label">판단 로직</div>
+        <div class="flow-ex-text">Q1: "금융(대출)" = YES ✓ → 2차 필터로 진행</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-step step-3">
+    <div class="flow-left">
+      <div class="flow-num">3</div>
+      <div class="flow-vline"></div>
+    </div>
+    <div class="flow-body">
+      <div class="flow-tag">2차 필터 · Q3 + Q4</div>
+      <div class="flow-title">"얼마나 위험한가?" 점수로 계산</div>
+      <div class="flow-desc" style="color:#6a8aaa;">Q3(자율성)과 Q4(피해 심각도)를 각각 0~10점으로 점수화합니다.<br>
+      Q3·Q4는 각각 <strong style="color:#a0c0e0;">35% 가중치</strong>로 최종 점수에 반영됩니다.<br>
+      도메인(Q1, Q2)은 15%씩 — 분야 자체보다 <strong style="color:#a0c0e0;">어떻게 작동하느냐</strong>가 더 중요하기 때문입니다.</div>
+      <div class="flow-example">
+        <div class="flow-ex-label">점수 계산 예시</div>
+        <div class="flow-ex-text">Q3: 완전 자동화 → 10점 / Q4: 대출 거절=비가역 → 10점<br>최종 점수 = 8×0.15 + 6×0.15 + 10×0.35 + 10×0.35 = 9.1점</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-step step-4">
+    <div class="flow-left">
+      <div class="flow-num">4</div>
+      <div class="flow-vline"></div>
+    </div>
+    <div class="flow-body">
+      <div class="flow-tag">분류 판정</div>
+      <div class="flow-title">점수 구간에 따라 등급을 부여합니다</div>
+      <div class="flow-desc" style="color:#aa6a8a;">8.5점 이상 → 🔴 고영향 CRITICAL<br>
+      6.5~8.4점 → 🟠 고영향 HIGH<br>
+      4.5~6.4점 → 🟡 조건부 고영향<br>
+      2.5~4.4점 → 🟢 중영향<br>
+      2.4점 미만 → 🔵 저영향/비해당</div>
+      <div class="flow-example">
+        <div class="flow-ex-label">판정 결과</div>
+        <div class="flow-ex-text">9.1점 → 🔴 고영향 AI (CRITICAL) 판정</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-step step-5">
+    <div class="flow-left">
+      <div class="flow-num">5</div>
+    </div>
+    <div class="flow-body">
+      <div class="flow-tag">OUTPUT + 감사 기록</div>
+      <div class="flow-title">판정 결과 + 필요 조치 + 기록 저장</div>
+      <div class="flow-desc" style="color:#8a6aaa;">등급과 함께 "어떤 조치를 해야 하는지"를 함께 출력합니다.<br>모든 판별 근거는 JSON 로그로 저장됩니다.<br>서비스가 바뀌면 <strong style="color:#c0a0e0;">자동으로 재평가</strong>가 트리거됩니다.</div>
+      <div class="flow-example">
+        <div class="flow-ex-label">출력 결과</div>
+        <div class="flow-ex-text">🔴 고영향 AI · CRITICAL | 필수 정부 등록 + 사전 영향평가 + 인간 감독 체계 구축 + 공시 의무 | 다음 재검토: 6개월 후</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- PAGE 3: WEIGHT -->
+<div class="page" id="page-weight">
+  <div class="weight-intro">
+    4개 질문이 모두 같은 비중이 아닙니다.<br>
+    <strong>Q3(자율성)과 Q4(피해)가 각각 35%</strong>로 절대적으로 중요합니다.<br>
+    왜냐면 — 같은 의료 AI라도, <strong>의사가 최종 결정하는 AI</strong>와 <strong>AI 혼자 진단을 내리는 AI</strong>는 완전히 다른 위험이기 때문입니다.
+  </div>
+  <div class="weight-cards">
+    <div class="weight-card wc-1">
+      <div class="wc-header">
+        <div class="wc-icon">🗂️</div>
+        <div class="wc-info">
+          <div class="wc-q">Q1 · DOMAIN</div>
+          <div class="wc-name">어떤 분야에서 쓰이나요?</div>
+        </div>
+        <div class="wc-weight-display">
+          <div class="wc-pct">15%</div>
+          <div class="wc-pct-label">가중치</div>
+        </div>
+      </div>
+      <div class="wc-bar-wrap"><div class="wc-bar"></div></div>
+      <div class="wc-why">분야 자체는 <strong>출발점</strong>일 뿐입니다. "의료"라는 이유만으로 무조건 고위험이라고 단정할 수 없습니다. 의료 분야라도 단순 예약 시스템이라면 위험하지 않습니다. 그래서 가중치가 낮습니다.</div>
+    </div>
+    <div class="weight-card wc-2">
+      <div class="wc-header">
+        <div class="wc-icon">⚖️</div>
+        <div class="wc-info">
+          <div class="wc-q">Q2 · RIGHTS IMPACT</div>
+          <div class="wc-name">기본권에 직접 닿나요?</div>
+        </div>
+        <div class="wc-weight-display">
+          <div class="wc-pct">15%</div>
+          <div class="wc-pct-label">가중치</div>
+        </div>
+      </div>
+      <div class="wc-bar-wrap"><div class="wc-bar"></div></div>
+      <div class="wc-why">Q1과 함께 <strong>입장 게이트</strong> 역할입니다. Q1이나 Q2 중 하나만 YES라도 2차 필터로 넘어가지만, 두 질문 자체의 배점은 낮습니다. "해당 분야냐"를 가리는 것이지, 위험도를 결정하는 것은 아닙니다.</div>
+    </div>
+    <div class="weight-card wc-3">
+      <div class="wc-header">
+        <div class="wc-icon">🤖</div>
+        <div class="wc-info">
+          <div class="wc-q">Q3 · AUTONOMY</div>
+          <div class="wc-name">AI가 혼자 결정하나요?</div>
+        </div>
+        <div class="wc-weight-display">
+          <div class="wc-pct">35%</div>
+          <div class="wc-pct-label">가중치</div>
+        </div>
+      </div>
+      <div class="wc-bar-wrap"><div class="wc-bar"></div></div>
+      <div class="wc-why"><strong>가장 중요한 요소 중 하나.</strong> 사람이 중간에 검토하고 개입할 수 있다면 AI의 오류를 잡을 기회가 있습니다. 하지만 완전 자동화라면 AI가 틀려도 그대로 집행됩니다. 이 차이가 위험의 핵심입니다.</div>
+    </div>
+    <div class="weight-card wc-4">
+      <div class="wc-header">
+        <div class="wc-icon">💥</div>
+        <div class="wc-info">
+          <div class="wc-q">Q4 · HARM SEVERITY</div>
+          <div class="wc-name">잘못되면 얼마나 심각한가요?</div>
+        </div>
+        <div class="wc-weight-display">
+          <div class="wc-pct">35%</div>
+          <div class="wc-pct-label">가중치</div>
+        </div>
+      </div>
+      <div class="wc-bar-wrap"><div class="wc-bar"></div></div>
+      <div class="wc-why"><strong>가장 중요한 요소 중 하나.</strong> 특히 <strong>"되돌릴 수 없는 피해"</strong>는 추가 점수(+1.5)를 받습니다. 잘못된 암 진단, 부당한 대출 거절, 잘못된 구금 — 이런 건 취소가 안 됩니다. 비가역성이 핵심입니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: EXAMPLES -->
+<div class="page" id="page-example">
+  <div class="ex-title-row">
+    <div class="ex-subtitle">카드를 클릭하면 Q1~Q4 판별 과정을 볼 수 있습니다</div>
+  </div>
+  <div class="example-cards">
+
+    <div class="ex-card ec-critical" onclick="toggleEx(this)">
+      <div class="ex-head">
+        <div class="ex-emoji">🏥</div>
+        <div class="ex-head-info">
+          <div class="ex-head-name">AI 암 진단 보조 시스템 (완전 자동 판독)</div>
+          <div class="ex-head-desc">CT 영상을 AI가 분석해 암 여부를 자동으로 판정·통보</div>
+        </div>
+        <div class="ex-badge">🔴 고영향 CRITICAL</div>
+      </div>
+      <div class="ex-body">
+        <div class="ex-qa">
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q1</span>
+            <span class="ex-q-text">의료 판단에 직접 관여하나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q2</span>
+            <span class="ex-q-text">생명·신체에 직접 영향을 주나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#6090e0;">Q3</span>
+            <span class="ex-q-text">의사 검토 없이 AI가 자동으로 판정·통보하나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#6090e0;">Q4</span>
+            <span class="ex-q-text">오진 시 치료 지연·사망 등 비가역적 피해가 발생하나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+        </div>
+        <div class="ex-conclusion ec-critical">⚠️ Q1~Q4 모두 YES + 비가역성 → 최고 위험 등급. 정부 등록 의무, 사전 영향평가, 의사 최종 확인 구조 의무화 필요.</div>
+      </div>
+    </div>
+
+    <div class="ex-card ec-high" onclick="toggleEx(this)">
+      <div class="ex-head">
+        <div class="ex-emoji">📋</div>
+        <div class="ex-head-info">
+          <div class="ex-head-name">AI 이력서 1차 스크리닝 시스템</div>
+          <div class="ex-head-desc">이력서를 AI가 분석해 합격/불합격 후보군을 자동 분류</div>
+        </div>
+        <div class="ex-badge">🟠 고영향 HIGH</div>
+      </div>
+      <div class="ex-body">
+        <div class="ex-qa">
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q1</span>
+            <span class="ex-q-text">채용 판단에 직접 관여하나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q2</span>
+            <span class="ex-q-text">기본권(직업 선택의 자유)에 영향을 주나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#6090e0;">Q3</span>
+            <span class="ex-q-text">인사담당자 검토 없이 AI가 최종 탈락을 결정하나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#6090e0;">Q4</span>
+            <span class="ex-q-text">탈락 후 재지원 기회가 없어 피해가 심각한가요?</span>
+            <span class="ex-q-ans ans-n">NO</span>
+          </div>
+        </div>
+        <div class="ex-conclusion ec-high">Q4가 NO(재지원 가능)이지만 나머지 3개가 모두 YES → HIGH 등급. 등록 의무 + AI 편향 감사 필요.</div>
+      </div>
+    </div>
+
+    <div class="ex-card ec-cond" onclick="toggleEx(this)">
+      <div class="ex-head">
+        <div class="ex-emoji">🎓</div>
+        <div class="ex-head-info">
+          <div class="ex-head-name">AI 학습 경로 추천 시스템 (교사 확인 있음)</div>
+          <div class="ex-head-desc">학생의 수준을 분석해 학습 경로를 추천하되 교사가 최종 검토</div>
+        </div>
+        <div class="ex-badge">🟡 조건부 고영향</div>
+      </div>
+      <div class="ex-body">
+        <div class="ex-qa">
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q1</span>
+            <span class="ex-q-text">교육 판단에 관여하나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q2</span>
+            <span class="ex-q-text">교육권·학습 기회에 직접 영향을 주나요?</span>
+            <span class="ex-q-ans ans-y">YES</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#6090e0;">Q3</span>
+            <span class="ex-q-text">교사 개입 없이 AI가 단독으로 학습 경로를 확정하나요?</span>
+            <span class="ex-q-ans ans-n">NO</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#6090e0;">Q4</span>
+            <span class="ex-q-text">오추천이 되더라도 쉽게 수정 가능한가요?</span>
+            <span class="ex-q-ans ans-n">NO</span>
+          </div>
+        </div>
+        <div class="ex-conclusion ec-cond">교육 분야이지만 교사 검토가 있고 피해가 가역적 → 조건부 고영향. 자체 위험평가 + 연 1회 재검토 권고.</div>
+      </div>
+    </div>
+
+    <div class="ex-card ec-low" onclick="toggleEx(this)">
+      <div class="ex-head">
+        <div class="ex-emoji">🎵</div>
+        <div class="ex-head-info">
+          <div class="ex-head-name">음악 스트리밍 추천 AI</div>
+          <div class="ex-head-desc">사용자 취향을 분석해 음악을 추천하는 알고리즘</div>
+        </div>
+        <div class="ex-badge">🔵 저영향/비해당</div>
+      </div>
+      <div class="ex-body">
+        <div class="ex-qa">
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q1</span>
+            <span class="ex-q-text">의료·채용·대출·교육·공공서비스에 관여하나요?</span>
+            <span class="ex-q-ans ans-n">NO</span>
+          </div>
+          <div class="ex-q-row">
+            <span class="ex-q-label" style="color:#e08060;">Q2</span>
+            <span class="ex-q-text">생명·신체·기본권에 직접 영향을 주나요?</span>
+            <span class="ex-q-ans ans-n">NO</span>
+          </div>
+          <div class="ex-q-row" style="opacity:0.4;">
+            <span class="ex-q-label" style="color:#6090e0;">Q3</span>
+            <span class="ex-q-text">— (1차 필터 미통과, 2차 진행 안 함)</span>
+            <span class="ex-q-ans" style="background:#1a2030;color:#4a6080;">SKIP</span>
+          </div>
+          <div class="ex-q-row" style="opacity:0.4;">
+            <span class="ex-q-label" style="color:#6090e0;">Q4</span>
+            <span class="ex-q-text">— (1차 필터 미통과, 2차 진행 안 함)</span>
+            <span class="ex-q-ans" style="background:#1a2030;color:#4a6080;">SKIP</span>
+          </div>
+        </div>
+        <div class="ex-conclusion ec-low">Q1, Q2 모두 NO → 1차 필터에서 즉시 종료. 저영향/비해당. Q3·Q4는 평가할 필요조차 없습니다.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+function toggleEx(card) {
+  const body = card.querySelector('.ex-body');
+  body.classList.toggle('open');
+}
+</script>
+</body>
+</html>
