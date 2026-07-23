@@ -210,4 +210,11 @@ document.getElementById("samples")?.addEventListener("click", (e) => {
   if (btn) ask(btn.textContent.trim());
 });
 
-input.focus();
+// 랜딩페이지 히어로 입력창에서 넘어온 질문(?q=...) 자동 실행
+const params = new URLSearchParams(location.search);
+const initialQ = (params.get("q") || "").trim();
+if (initialQ) {
+  ask(initialQ);
+} else {
+  input.focus();
+}

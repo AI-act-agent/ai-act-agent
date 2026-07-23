@@ -40,7 +40,7 @@
       </div>
 
       <!-- Chat preview -->
-      <div class="chat-card" aria-hidden="true">
+      <div class="chat-card">
         <div class="chat-card-head">조문조문 AI <span class="live-dot"></span></div>
         <div class="chat-card-body">
           <div class="bubble-user">우리 서비스가 고영향 AI에 해당하나요? (의료 예약 시스템, B2C)</div>
@@ -56,9 +56,10 @@
               <span class="chip">판단가이드라인 1.2.1</span>
             </div>
           </div>
-          <div class="chat-input">
-            <input type="text" placeholder="AI기본법에 대해 무엇이든 물어보세요..." disabled />
-          </div>
+          <form class="chat-input" action="ask.html" method="get">
+            <input name="q" type="text" placeholder="AI기본법에 대해 무엇이든 물어보세요..." aria-label="질문 입력" />
+            <button class="send" type="submit" aria-label="전송">↑</button>
+          </form>
         </div>
       </div>
     </div>

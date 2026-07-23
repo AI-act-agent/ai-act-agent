@@ -132,6 +132,12 @@ a.chip:hover { background: rgba(0,53,145,.24); }
   font-family: inherit; font-size: 14px; color: var(--ink); height: 40px;
 }
 .chat-input input::placeholder { color: rgba(72,92,132,.5); }
+.chat-input .send {
+  background: var(--primary); color: #fff; border: none; border-radius: 8px;
+  width: 40px; height: 36px; flex-shrink: 0; display: grid; place-items: center;
+  font-size: 16px; transition: background .12s ease;
+}
+.chat-input .send:hover { background: var(--primary-strong); }
 
 /* ---------- Sections ---------- */
 section { position: relative; }
