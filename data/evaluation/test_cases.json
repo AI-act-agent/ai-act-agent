@@ -317,7 +317,8 @@
     "expected_verdict": "답변 확정",
     "gold_article_ids": [
       "AI_BASIC_ACT_31",
-      "AI_TRANSPARENCY_GUIDE_1"
+      "AI_TRANSPARENCY_GUIDE_1",
+      "CASE_사례집_007"
     ],
     "gold_answer": "생성형 인공지능 기반 챗봇 서비스는 해당 서비스가 인공지능에 기반하여 운용된다는 사실을 이용자에게 사전에 고지해야 하며, 생성된 결과물에는 생성형 인공지능으로 생성되었다는 사실을 표시해야 합니다.",
     "required_key_points": [
@@ -333,7 +334,8 @@
     "expected_verdict": "답변 확정",
     "gold_article_ids": [
       "AI_TRANSPARENCY_GUIDE_13",
-      "AI_BASIC_ACT_31"
+      "AI_BASIC_ACT_31",
+      "CASE_사례집_005"
     ],
     "gold_answer": "생성형 인공지능으로 만든 이미지 생성물에는 인공지능으로 생성되었다는 사실을 이용자가 인식할 수 있도록 표시해야 하며, 가시적 표시와 함께 비가시적 메타데이터 방식 등을 활용할 수 있습니다.",
     "required_key_points": [
@@ -348,7 +350,8 @@
     "answerable": true,
     "expected_verdict": "답변 확정",
     "gold_article_ids": [
-      "AI_BASIC_ACT_2"
+      "AI_BASIC_ACT_2",
+      "CASE_사례집_014"
     ],
     "gold_answer": "채용·평가는 제2조제4호에서 정한 고영향 인공지능 활용 영역에 해당하므로, 채용 서류전형에 활용되는 인공지능은 지원자의 기본권에 중대한 영향을 미칠 수 있어 고영향 인공지능에 해당할 수 있습니다.",
     "required_key_points": [
@@ -364,7 +367,8 @@
     "answerable": true,
     "expected_verdict": "답변 확정",
     "gold_article_ids": [
-      "AI_BASIC_ACT_2"
+      "AI_BASIC_ACT_2",
+      "CASE_사례집_015"
     ],
     "gold_answer": "대출·신용평가 등 개인의 신용에 중대한 영향을 미치는 영역은 제2조제4호의 고영향 인공지능 활용 영역에 해당하므로, 대출·신용 심사에 활용되는 인공지능은 고영향 인공지능에 해당할 수 있습니다.",
     "required_key_points": [
@@ -379,7 +383,8 @@
     "answerable": true,
     "expected_verdict": "답변 확정",
     "gold_article_ids": [
-      "AI_BASIC_ACT_2"
+      "AI_BASIC_ACT_2",
+      "CASE_사례집_016"
     ],
     "gold_answer": "보건의료 제공 및 의료기기·디지털의료기기의 개발·이용은 제2조제4호의 고영향 인공지능 활용 영역에 해당하므로, 의료기기에 탑재된 인공지능 진단 기능은 고영향 인공지능에 해당할 수 있습니다.",
     "required_key_points": [
@@ -394,7 +399,8 @@
     "answerable": true,
     "expected_verdict": "답변 확정",
     "gold_article_ids": [
-      "AI_BASIC_ACT_2"
+      "AI_BASIC_ACT_2",
+      "CASE_사례집_013"
     ],
     "gold_answer": "고영향 인공지능은 생명·신체의 안전 및 기본권에 중대한 영향을 미치는 제2조제4호의 특정 영역에서 활용되는 경우를 말합니다. 사내 일정 관리용 단순 챗봇은 그러한 영역에 해당하지 않아 일반적으로 고영향 인공지능으로 보기 어렵습니다.",
     "required_key_points": [
@@ -449,7 +455,8 @@
     "answerable": true,
     "expected_verdict": "답변 확정",
     "gold_article_ids": [
-      "AI_BASIC_ACT_2"
+      "AI_BASIC_ACT_2",
+      "CASE_사례집_018"
     ],
     "gold_answer": "국민의 생명·신체 안전 및 기본권에 중대한 영향을 미치는 공공안전·에너지·먹는물 등 제2조제4호의 영역에서 활용되는 인공지능은 고영향 인공지능에 해당할 수 있으므로, 홍수예보·지능형 CCTV 등 공공안전 분야 인공지능은 고영향에 해당할 가능성이 있습니다.",
     "required_key_points": [

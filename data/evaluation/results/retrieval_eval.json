@@ -1,0 +1,679 @@
+{
+  "summary": {
+    "evaluated_cases": 26,
+    "base_top_k": 6,
+    "expand_reference": true,
+    "max_retrieved_count": 8,
+    "hit_rate": 0.7692307692307693,
+    "mean_recall": 0.6602564102564104,
+    "mrr": 0.4125457875457875
+  },
+  "results": [
+    {
+      "id": "Q001",
+      "question": "고영향 인공지능이란 무엇인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_2"
+      ],
+      "retrieved_article_ids": [
+        "JUDGE_판단가이드_0012",
+        "JUDGE_판단가이드_0013",
+        "JUDGE_판단가이드_0125",
+        "JUDGE_판단가이드_0011",
+        "JUDGE_판단가이드_0009",
+        "JUDGE_판단가이드_0010"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q002",
+      "question": "생성형 AI 결과물을 외부로 반출할 때 어떻게 표시해야 하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_31",
+        "AI_TRANSPARENCY_GUIDE_5"
+      ],
+      "retrieved_article_ids": [
+        "AI_TRANSPARENCY_GUIDE_7",
+        "AI_TRANSPARENCY_GUIDE_4",
+        "AI_TRANSPARENCY_GUIDE_16",
+        "AI_TRANSPARENCY_GUIDE_6",
+        "CASE_사례집_004",
+        "AI_TRANSPARENCY_GUIDE_5",
+        "AI_BASIC_ACT_31",
+        "AI_BASIC_DECREE_23"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.16666666666666666
+    },
+    {
+      "id": "Q003",
+      "question": "AI가 만든 음악의 저작권자는 누구인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [],
+      "retrieved_article_ids": [
+        "CASE_사례집_004",
+        "AI_IMPACT_GUIDE_30",
+        "AI_TRANSPARENCY_GUIDE_25",
+        "AI_TRANSPARENCY_GUIDE_23",
+        "OBLIG_FAQ_08",
+        "AI_TRANSPARENCY_GUIDE_21"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": null,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q004",
+      "question": "고영향 인공지능 사업자는 어떤 책무를 이행해야 하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_34",
+        "AI_BASIC_DECREE_27"
+      ],
+      "retrieved_article_ids": [
+        "JUDGE_판단가이드_0034",
+        "OBLIG_FAQ_14",
+        "AI_BASIC_ACT_34",
+        "OBLIG_FAQ_04",
+        "AI_BASIC_DECREE_27",
+        "JUDGE_판단가이드_0015"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "id": "Q005",
+      "question": "고영향 인공지능에 해당하는지 사업자가 확인할 의무가 있나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_33"
+      ],
+      "retrieved_article_ids": [
+        "JUDGE_판단가이드_0437",
+        "JUDGE_판단가이드_0436",
+        "AI_BASIC_ACT_34",
+        "AI_IMPACT_GUIDE_3",
+        "OBLIG_FAQ_02",
+        "CASE_사례집_014",
+        "AI_BASIC_DECREE_27",
+        "AI_BASIC_ACT_2"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q006",
+      "question": "고영향 인공지능 영향평가는 누가 어떻게 해야 하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 7,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_35"
+      ],
+      "retrieved_article_ids": [
+        "AI_BASIC_ACT_35",
+        "JUDGE_판단가이드_0127",
+        "JUDGE_판단가이드_0128",
+        "AI_IMPACT_GUIDE_49",
+        "JUDGE_판단가이드_0327",
+        "JUDGE_판단가이드_0034",
+        "AI_BASIC_DECREE_28"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "Q007",
+      "question": "인공지능 투명성 확보 의무는 무엇인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_31"
+      ],
+      "retrieved_article_ids": [
+        "AI_TRANSPARENCY_GUIDE_1",
+        "CASE_사례집_002",
+        "AI_TRANSPARENCY_GUIDE_2",
+        "OBLIG_책무_2-1-1",
+        "CASE_사례집_013",
+        "AI_TRANSPARENCY_GUIDE_7",
+        "AI_BASIC_ACT_31",
+        "AI_BASIC_DECREE_23"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.14285714285714285
+    },
+    {
+      "id": "Q008",
+      "question": "인공지능 안전성 확보 의무는 어떤 시스템에 적용되나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_32",
+        "AI_BASIC_DECREE_24"
+      ],
+      "retrieved_article_ids": [
+        "AI_BASIC_ACT_12",
+        "AI_BASIC_ACT_32",
+        "OBLIG_FAQ_14",
+        "AI_BASIC_ACT_34",
+        "AI_BASIC_ACT_30",
+        "AI_BASIC_ACT_29",
+        "AI_BASIC_DECREE_10",
+        "AI_BASIC_DECREE_24"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "Q009",
+      "question": "국내에 주소가 없는 해외 인공지능사업자는 어떤 의무가 있나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_36"
+      ],
+      "retrieved_article_ids": [
+        "OBLIG_FAQ_04",
+        "AI_BASIC_ACT_36",
+        "JUDGE_판단가이드_0348",
+        "AI_BASIC_ACT_22",
+        "CASE_사례집_013",
+        "JUDGE_판단가이드_0349",
+        "AI_BASIC_DECREE_29",
+        "AI_BASIC_DECREE_16"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "Q010",
+      "question": "투명성 고지 의무를 위반하면 어떤 제재를 받나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_43"
+      ],
+      "retrieved_article_ids": [
+        "CASE_사례집_002",
+        "AI_TRANSPARENCY_GUIDE_1",
+        "AI_TRANSPARENCY_GUIDE_24",
+        "OBLIG_FAQ_14",
+        "JUDGE_판단가이드_0400",
+        "AI_BASIC_ACT_43",
+        "AI_BASIC_ACT_31",
+        "AI_BASIC_DECREE_29"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.16666666666666666
+    },
+    {
+      "id": "Q011",
+      "question": "인공지능기본법의 목적은 무엇인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_1"
+      ],
+      "retrieved_article_ids": [
+        "JUDGE_판단가이드_0018",
+        "JUDGE_판단가이드_0017",
+        "JUDGE_판단가이드_0015",
+        "JUDGE_판단가이드_0019",
+        "JUDGE_판단가이드_0014",
+        "JUDGE_판단가이드_0020"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q012",
+      "question": "인공지능시스템의 법적 정의는 무엇인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_2"
+      ],
+      "retrieved_article_ids": [
+        "JUDGE_판단가이드_0012",
+        "OBLIG_FAQ_01",
+        "JUDGE_판단가이드_0013",
+        "JUDGE_판단가이드_0223",
+        "JUDGE_판단가이드_0010",
+        "AI_BASIC_ACT_2",
+        "AI_BASIC_DECREE_12",
+        "AI_BASIC_DECREE_25"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.16666666666666666
+    },
+    {
+      "id": "Q013",
+      "question": "인공지능 윤리원칙은 누가 정하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 7,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_27",
+        "AI_BASIC_DECREE_21"
+      ],
+      "retrieved_article_ids": [
+        "AI_BASIC_ACT_27",
+        "JUDGE_판단가이드_0330",
+        "JUDGE_판단가이드_0331",
+        "AI_BASIC_DECREE_21",
+        "AI_BASIC_ACT_28",
+        "AI_BASIC_ACT_31",
+        "AI_BASIC_DECREE_23"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "Q014",
+      "question": "고영향 인공지능 확인을 요청하려면 어떤 서류가 필요한가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_DECREE_25"
+      ],
+      "retrieved_article_ids": [
+        "JUDGE_판단가이드_0322",
+        "JUDGE_판단가이드_0323",
+        "AI_BASIC_ACT_33",
+        "AI_IMPACT_GUIDE_3",
+        "JUDGE_판단가이드_0004",
+        "AI_BASIC_DECREE_25",
+        "AI_BASIC_DECREE_26",
+        "AI_BASIC_DECREE_31"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.16666666666666666
+    },
+    {
+      "id": "Q015",
+      "question": "사업자 책무 중 홈페이지 등에 게시해야 하는 사항은 무엇인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_DECREE_27"
+      ],
+      "retrieved_article_ids": [
+        "OBLIG_책무_2-3-2",
+        "OBLIG_FAQ_08",
+        "AI_BASIC_DECREE_27",
+        "JUDGE_판단가이드_0408",
+        "AI_TRANSPARENCY_GUIDE_5",
+        "AI_BASIC_ACT_36",
+        "AI_BASIC_ACT_34",
+        "AI_BASIC_DECREE_29"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "id": "Q016",
+      "question": "인공지능기본법은 언제부터 시행되나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_43"
+      ],
+      "retrieved_article_ids": [
+        "CASE_사례집_012",
+        "AI_IMPACT_GUIDE_15",
+        "AI_BASIC_DECREE_24",
+        "AI_IMPACT_GUIDE_31",
+        "AI_BASIC_DECREE_33",
+        "AI_IMPACT_GUIDE_49",
+        "AI_BASIC_ACT_32",
+        "AI_BASIC_ACT_35"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q017",
+      "question": "고영향 AI의 위험관리방안은 어떻게 수립하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_34",
+        "OBLIG_책무_1-1-1"
+      ],
+      "retrieved_article_ids": [
+        "OBLIG_책무_1-1-5",
+        "OBLIG_책무_1-1-4",
+        "OBLIG_책무_1-1-3",
+        "OBLIG_FAQ_05",
+        "JUDGE_판단가이드_0177",
+        "OBLIG_책무_1-1-1"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 0.5,
+      "reciprocal_rank": 0.16666666666666666
+    },
+    {
+      "id": "Q018",
+      "question": "이용자 보호 방안은 어떻게 수립하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "OBLIG_책무_3-1-1",
+        "OBLIG_책무_3-2-1"
+      ],
+      "retrieved_article_ids": [
+        "OBLIG_책무_3-2-3",
+        "OBLIG_FAQ_08",
+        "OBLIG_책무_3-1-1",
+        "OBLIG_책무_3-1-2",
+        "OBLIG_책무_3-2-1",
+        "OBLIG_책무_3-2-2"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "id": "Q019",
+      "question": "고영향 AI에서 사람의 관리·감독은 어떻게 해야 하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "OBLIG_책무_4-1-1",
+        "OBLIG_책무_4-1-2"
+      ],
+      "retrieved_article_ids": [
+        "OBLIG_FAQ_11",
+        "OBLIG_FAQ_12",
+        "JUDGE_판단가이드_0410",
+        "OBLIG_책무_4-1-1",
+        "JUDGE_판단가이드_0392",
+        "OBLIG_책무_4-1-2"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.25
+    },
+    {
+      "id": "Q020",
+      "question": "학습용데이터에 대한 설명은 어떻게 관리해야 하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [
+        "OBLIG_책무_2-2-1"
+      ],
+      "retrieved_article_ids": [
+        "AI_BASIC_DECREE_13",
+        "OBLIG_책무_2-2-1",
+        "JUDGE_판단가이드_0385",
+        "OBLIG_책무_2-3-2",
+        "JUDGE_판단가이드_0071",
+        "AI_BASIC_ACT_15",
+        "AI_BASIC_DECREE_12",
+        "AI_BASIC_DECREE_14"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "Q021",
+      "question": "생성형 AI 챗봇 서비스는 이용자에게 무엇을 알려야 하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_31",
+        "AI_TRANSPARENCY_GUIDE_1",
+        "CASE_사례집_007"
+      ],
+      "retrieved_article_ids": [
+        "OBLIG_책무_2-3-2",
+        "CASE_사례집_001",
+        "AI_TRANSPARENCY_GUIDE_5",
+        "AI_TRANSPARENCY_GUIDE_8",
+        "CASE_사례집_004",
+        "AI_TRANSPARENCY_GUIDE_15"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q022",
+      "question": "이미지 생성물에는 어떻게 표시해야 하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_31",
+        "AI_TRANSPARENCY_GUIDE_13",
+        "CASE_사례집_005"
+      ],
+      "retrieved_article_ids": [
+        "AI_TRANSPARENCY_GUIDE_13",
+        "CASE_사례집_004",
+        "CASE_사례집_010",
+        "CASE_사례집_007",
+        "AI_TRANSPARENCY_GUIDE_17",
+        "CASE_사례집_005"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 0.6666666666666666,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "Q023",
+      "question": "채용 서류전형에 인공지능을 활용하면 고영향 인공지능인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_2",
+        "CASE_사례집_014"
+      ],
+      "retrieved_article_ids": [
+        "CASE_사례집_014",
+        "JUDGE_판단가이드_0127",
+        "JUDGE_판단가이드_0128",
+        "JUDGE_판단가이드_0126",
+        "CASE_사례집_015",
+        "JUDGE_판단가이드_0124"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 0.5,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "Q024",
+      "question": "대출·신용 심사에 쓰는 인공지능은 고영향 인공지능인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_2",
+        "CASE_사례집_015"
+      ],
+      "retrieved_article_ids": [
+        "CASE_사례집_015",
+        "JUDGE_판단가이드_0141",
+        "JUDGE_판단가이드_0135",
+        "JUDGE_판단가이드_0288",
+        "JUDGE_판단가이드_0136",
+        "JUDGE_판단가이드_0142"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 0.5,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "Q025",
+      "question": "의료기기에 탑재된 인공지능 진단 기능은 고영향 인공지능인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_2",
+        "CASE_사례집_016"
+      ],
+      "retrieved_article_ids": [
+        "CASE_사례집_016",
+        "JUDGE_판단가이드_0253",
+        "JUDGE_판단가이드_0254",
+        "JUDGE_판단가이드_0255",
+        "JUDGE_판단가이드_0070",
+        "JUDGE_판단가이드_0074"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 0.5,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "Q026",
+      "question": "사내 일정 관리용으로만 쓰는 단순 챗봇도 고영향 인공지능인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_2",
+        "CASE_사례집_013"
+      ],
+      "retrieved_article_ids": [
+        "CASE_사례집_001",
+        "CASE_사례집_014",
+        "JUDGE_판단가이드_0141",
+        "OBLIG_책무_2-3-1",
+        "JUDGE_판단가이드_0308",
+        "JUDGE_판단가이드_0309"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q027",
+      "question": "인공지능 관련 특허는 어디에 어떻게 출원하나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [],
+      "retrieved_article_ids": [
+        "AI_BASIC_DECREE_29",
+        "AI_BASIC_DECREE_27",
+        "JUDGE_판단가이드_0329",
+        "CASE_사례집_001",
+        "AI_BASIC_ACT_24",
+        "AI_BASIC_ACT_30",
+        "AI_BASIC_ACT_36",
+        "AI_BASIC_ACT_43"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": null,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q028",
+      "question": "인공지능 개발자의 평균 연봉은 얼마인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 8,
+      "gold_article_ids": [],
+      "retrieved_article_ids": [
+        "JUDGE_판단가이드_0412",
+        "AI_BASIC_DECREE_29",
+        "AI_IMPACT_GUIDE_42",
+        "AI_BASIC_DECREE_24",
+        "JUDGE_판단가이드_0307",
+        "JUDGE_판단가이드_0308",
+        "AI_BASIC_ACT_36",
+        "AI_BASIC_ACT_43"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": null,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q029",
+      "question": "AI 챗봇과의 대화 내용은 개인정보보호법상 어떻게 보호되나요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [],
+      "retrieved_article_ids": [
+        "OBLIG_FAQ_08",
+        "AI_TRANSPARENCY_GUIDE_27",
+        "AI_TRANSPARENCY_GUIDE_8",
+        "AI_IMPACT_GUIDE_40",
+        "AI_TRANSPARENCY_GUIDE_23",
+        "AI_TRANSPARENCY_GUIDE_5"
+      ],
+      "hit_at_k": false,
+      "recall_at_k": null,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "Q030",
+      "question": "공공안전 분야(홍수예보, 지능형 CCTV)의 인공지능은 고영향 인공지능인가요?",
+      "top_k": 6,
+      "expand_reference": true,
+      "retrieved_count": 6,
+      "gold_article_ids": [
+        "AI_BASIC_ACT_2",
+        "CASE_사례집_018"
+      ],
+      "retrieved_article_ids": [
+        "CASE_사례집_018",
+        "JUDGE_판단가이드_0127",
+        "JUDGE_판단가이드_0310",
+        "JUDGE_판단가이드_0311",
+        "JUDGE_판단가이드_0225",
+        "JUDGE_판단가이드_0251"
+      ],
+      "hit_at_k": true,
+      "recall_at_k": 0.5,
+      "reciprocal_rank": 1.0
+    }
+  ]
+}

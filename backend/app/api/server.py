@@ -22,7 +22,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -44,6 +44,10 @@ WEB_DIST = PROJECT_ROOT / "web" / "dist"
 FRONTEND_DIR = WEB_DIST if WEB_DIST.is_dir() else PROJECT_ROOT / "frontend"
 
 app = FastAPI(title="조문조문 API", version="0.2.0")
+
+
+def _index_file() -> Path:
+    return FRONTEND_DIR / "index.html"
 
 app.add_middleware(
     CORSMiddleware,
@@ -118,18 +122,26 @@ def _get_assessment_session(
 
 @app.post("/api/ask")
 def ask(req: AskRequest):
+    """질문 → 에이전트 실행 → 답변 JSON.
+
+    run_agent는 동기 함수라 FastAPI가 스레드풀에서 실행한다(이벤트 루프 블로킹 없음).
+    LLM + 검색 + 검증을 거치므로 응답까지 수십 초가 걸릴 수 있다.
+    실패는 반드시 4xx/5xx로 알려 프론트가 '가짜 답변'을 표시하지 않도록 한다.
+    """
+    question = req.question.strip()
+    if not question:
+        raise HTTPException(status_code=400, detail="질문을 입력해 주세요.")
+
     try:
-        result = run_agent(req.question)
-        return asdict(result)  # verdict, answer, confidence, citations, steps, retry_count
-    except Exception as e:  # 실패 시 프론트가 데모로 폴백함
-        return {
-            "verdict": "🔎 서버 처리 실패",
-            "answer": f"에이전트 실행 중 오류가 발생했습니다: {e}",
-            "confidence": "근거 부족",
-            "citations": [],
-            "steps": [],
-            "retry_count": 0,
-        }
+        result = run_agent(question)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"에이전트 실행 중 오류가 발생했습니다: {e}",
+        )
+
+    # verdict, answer, confidence, citations, steps, retry_count
+    return asdict(result)
 
 @app.post("/api/assessment/start")
 def assessment_start(
@@ -269,7 +281,7 @@ def assessment_finalize(
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {"status": "ok", "frontend": str(FRONTEND_DIR), "built": _index_file().is_file()}
 
 
 # 정적 에셋 (Vite: web/dist/assets, 정적 HTML: frontend/assets)
@@ -281,7 +293,20 @@ if _assets.is_dir():
 @app.get("/{full_path:path}")
 def spa(full_path: str):
     """정적 파일이 있으면 그대로, 없으면 index.html(SPA 라우팅 폴백)."""
-    candidate = FRONTEND_DIR / full_path
-    if full_path and candidate.is_file():
+    if full_path.startswith("api/"):  # 없는 API 경로가 HTML로 응답되지 않도록
+        raise HTTPException(status_code=404, detail="존재하지 않는 API 경로입니다.")
+
+    candidate = (FRONTEND_DIR / full_path).resolve()
+    # ../ 로 프로젝트 바깥 파일을 읽지 못하게 제한
+    if full_path and candidate.is_file() and candidate.is_relative_to(FRONTEND_DIR.resolve()):
         return FileResponse(candidate)
-    return FileResponse(FRONTEND_DIR / "index.html")
+
+    index = _index_file()
+    if not index.is_file():
+        return JSONResponse(
+            status_code=503,
+            content={
+                "detail": "프론트엔드 빌드가 없습니다. `cd web && npm install && npm run build` 후 다시 열어 주세요."
+            },
+        )
+    return FileResponse(index)

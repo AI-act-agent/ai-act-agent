@@ -14,16 +14,19 @@ export default function Ask() {
   const [params] = useSearchParams();
   const [messages, setMessages] = useState([]); // {role:'user'|'bot', text?, result?}
   const [typing, setTyping] = useState(false);
+  const [elapsed, setElapsed] = useState(0); // 에이전트 응답은 수십 초 걸려 경과 시간을 보여준다
   const [input, setInput] = useState("");
   const [started, setStarted] = useState(false);
   const endRef = useRef(null);
   const inputRef = useRef(null);
   const askedInitial = useRef(false);
 
-  const scrollToEnd = () =>
+  // 반환값이 있으면 React가 effect cleanup으로 오인해 호출하므로 아무것도 반환하지 않는다
+  const scrollToEnd = () => {
     requestAnimationFrame(() =>
       endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
     );
+  };
 
   const ask = async (question) => {
     if (!question.trim()) return;
@@ -53,6 +56,14 @@ export default function Ask() {
   useEffect(() => {
     scrollToEnd();
   }, [messages, typing]);
+
+  // 답변 대기 중 경과 시간 카운트
+  useEffect(() => {
+    if (!typing) return;
+    setElapsed(0);
+    const id = setInterval(() => setElapsed((s) => s + 1), 1000);
+    return () => clearInterval(id);
+  }, [typing]);
 
   return (
     <div className="ask-page">
@@ -107,10 +118,15 @@ export default function Ask() {
           {typing && (
             <div className="msg bot">
               <div className="bubble">
-                <div className="typing">
-                  <span />
-                  <span />
-                  <span />
+                <div className="typing-wrap">
+                  <div className="typing">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <span className="typing-note">
+                    법령 검색·근거 검증 중… {elapsed}초
+                  </span>
                 </div>
               </div>
             </div>

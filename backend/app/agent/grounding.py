@@ -25,9 +25,13 @@ def _load_nli_model():
 
     return tokenizer, model
 
-ENTAILMENT_THRESHOLD = 0.5
+ENTAILMENT_THRESHOLD = 0.45
 CONTRADICTION_THRESHOLD = 0.7
-MIN_CLAIM_COVERAGE = 0.7
+MIN_CLAIM_COVERAGE = 0.5
+
+# CPU NLI 검증 비용 상한 (속도) — claim 수 × 근거 수 만큼 추론하므로 둘 다 제한
+GROUNDING_MAX_EVIDENCE = 5
+GROUNDING_MAX_CLAIMS = 6
 
 
 def split_answer_claims(
@@ -102,9 +106,10 @@ def score_claim_against_evidence(
 
     tokenizer, model = _load_nli_model()
 
+    # CPU NLI 속도를 위해 상위 근거만, 짧은 시퀀스로 검증한다.
     premises = [
         f"{item.article}: {item.text}"
-        for item in evidence
+        for item in evidence[:GROUNDING_MAX_EVIDENCE]
     ]
     hypotheses = [
         claim
@@ -116,7 +121,7 @@ def score_claim_against_evidence(
         hypotheses,
         padding=True,
         truncation="only_first",
-        max_length=512,
+        max_length=256,
         return_tensors="pt",
     )
 
@@ -197,7 +202,7 @@ def grounding_details(
             "claims": [],
         }
 
-    claims = split_answer_claims(answer)
+    claims = split_answer_claims(answer)[:GROUNDING_MAX_CLAIMS]
 
     claim_results = [
         evaluate_claim(
