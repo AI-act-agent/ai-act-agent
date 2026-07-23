@@ -16,7 +16,6 @@ from backend.app.agent.retriever import retrieve_evidence
 from backend.app.agent.schemas import AgentResult
 
 
-MAX_RETRIES = 2
 
 
 def _plan_query(question: str) -> tuple[str, bool]:
@@ -75,54 +74,95 @@ def _safe_grounding(answer: str, evidence) -> str:
 
 def run_agent(question: str) -> AgentResult:
     if not question.strip():
-        raise ValueError("질문을 입력해야 합니다.")
+        raise ValueError(
+            "질문을 입력해야 합니다."
+        )
 
-    search_query, planned = _plan_query(question)
+    search_query, planned = _plan_query(
+        question
+    )
     steps = [
         "질문 입력",
-        f"조사 계획 생성 ({'LLM 계획' if planned else '원 질문 사용'})",
+        (
+            "조사 계획 생성 "
+            f"({'LLM 계획' if planned else '원 질문 사용'})"
+        ),
     ]
 
-    last_evidence = []
+    evidence = _retrieve(search_query)
+    steps.append(
+        f"조문 검색 1회 → {len(evidence)}건"
+    )
 
-    for attempt in range(MAX_RETRIES + 1):
-        evidence = _retrieve(search_query)
-        last_evidence = evidence
-        steps.append(f"조문 검색 {attempt + 1}회 → {len(evidence)}건")
+    if not evidence:
+        steps.append("검색 근거 없음: 판단 보류")
 
-        if evidence:
-            answer_data, used_llm = _make_answer(question, evidence)
+        return AgentResult(
+            verdict="판단 보류",
+            answer=(
+                "검색된 법령·가이드라인 근거가 없어 "
+                "답변하기 어렵습니다."
+            ),
+            confidence="근거 부족",
+            citations=[],
+            steps=steps,
+            retry_count=0,
+        )
 
-            if used_llm:
-                # LLM 답변만 로컬 NLI로 검증(오프라인 템플릿은 근거를 직접 인용하므로 생략)
-                grounding_result = _safe_grounding(answer_data["answer"], evidence)
-                steps.append(f"근거 검증: {grounding_result}")
-                confirmed = grounding_result in ("entailment", "skipped")
-            else:
-                steps.append("근거 인용 답변(검증 생략)")
-                confirmed = True
+    answer_data, used_llm = _make_answer(
+        question,
+        evidence,
+    )
 
-            if confirmed:
-                steps.append("답변 확정")
-                return AgentResult(
-                    verdict=answer_data["verdict"],
-                    answer=answer_data["answer"],
-                    confidence=answer_data["confidence"],
-                    citations=evidence,
-                    steps=steps,
-                    retry_count=attempt,
-                )
+    if not used_llm:
+        steps.extend([
+            "근거 인용 답변 생성",
+            "답변 확정",
+        ])
 
-        if attempt < MAX_RETRIES:
-            steps.append("근거 부족: 재검색")
+        return AgentResult(
+            verdict=answer_data["verdict"],
+            answer=answer_data["answer"],
+            confidence=answer_data["confidence"],
+            citations=evidence,
+            steps=steps,
+            retry_count=0,
+        )
 
-    steps.append("판단 보류")
+    grounding_result = _safe_grounding(
+        answer_data["answer"],
+        evidence,
+    )
+    steps.append(
+        f"근거 검증: {grounding_result}"
+    )
+
+    if grounding_result == "entailment":
+        steps.append("답변 확정")
+
+        return AgentResult(
+            verdict=answer_data["verdict"],
+            answer=answer_data["answer"],
+            confidence=answer_data["confidence"],
+            citations=evidence,
+            steps=steps,
+            retry_count=0,
+        )
+
+    fallback_answer = _template_answer(
+        evidence
+    )
+    steps.extend([
+        "근거 검증 미통과",
+        "근거 직접 인용 답변으로 전환",
+        "답변 확정",
+    ])
 
     return AgentResult(
-        verdict="판단 보류",
-        answer="검색된 법령 근거만으로는 판단하기 어렵습니다.",
-        confidence="근거 부족",
-        citations=last_evidence,
+        verdict=fallback_answer["verdict"],
+        answer=fallback_answer["answer"],
+        confidence=fallback_answer["confidence"],
+        citations=evidence,
         steps=steps,
-        retry_count=MAX_RETRIES,
+        retry_count=0,
     )
