@@ -25,12 +25,9 @@ LOCAL_EMBEDDING_MODEL = os.getenv(
 )
 GENERATION_MODEL = os.getenv("GEMINI_GENERATION_MODEL")
 
-if not API_KEY:
-    raise RuntimeError(
-        "GEMINI_API_KEY가 .env 파일에 없습니다."
-    )
-
-client = genai.Client(api_key=API_KEY)
+# 생성(generation)에만 Gemini가 필요합니다. 키가 없어도 import·임베딩·검색은
+# 동작하도록 client를 지연 생성하고, 실제 생성 호출 시에만 키를 요구합니다.
+client = genai.Client(api_key=API_KEY) if API_KEY else None
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
@@ -559,6 +556,11 @@ def generate_answer(
 질문:
 {question}
 """
+
+    if client is None:
+        raise RuntimeError(
+            "답변 생성에는 GEMINI_API_KEY가 필요합니다."
+        )
 
     response = client.models.generate_content(
         model=GENERATION_MODEL,
