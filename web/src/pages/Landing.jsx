@@ -194,7 +194,7 @@ export default function Landing() {
             <div className="fdesc">
               AI기본법 전문 QA 에이전트
               <br />
-              홍익대학교 산업·데이터공학과 졸업 프로젝트
+              인공지능 커리어패스 프로그램 AICPP ♥ 싱가폴
             </div>
           </div>
           <nav className="footer-links">
