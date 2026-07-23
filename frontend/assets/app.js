@@ -49,9 +49,8 @@ function addAnswer(result) {
   const cites = (result.citations || [])
     .map((c) => {
       const label = escapeHtml(c.article || c.label || "근거");
-      const url = c.source_url && !String(c.source_url).startsWith("mock")
-        ? escapeHtml(c.source_url)
-        : null;
+      // 실제 http(s) 링크일 때만 클릭 가능하게 (파일명·mock 출처는 텍스트로)
+      const url = /^https?:\/\//.test(c.source_url || "") ? escapeHtml(c.source_url) : null;
       return url
         ? `<a class="chip" href="${url}" target="_blank" rel="noopener">${label}</a>`
         : `<span class="chip">${label}</span>`;
