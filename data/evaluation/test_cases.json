@@ -15,32 +15,447 @@
     ]
   },
   {
-  "id": "Q002",
-  "type": "가이드라인 질의",
-  "question": "생성형 AI 결과물을 외부로 반출할 때 어떻게 표시해야 하나요?",
-  "answerable": true,
-  "expected_verdict": "답변 확정",
-  "gold_article_ids": [
-    "AI_BASIC_ACT_31",
-    "AI_TRANSPARENCY_GUIDE_5"
-  ],
-  "gold_answer": "생성형 AI 결과물은 AI에 의해 생성되었다는 사실을 표시해야 하며, 다운로드나 공유 등으로 외부 반출하는 경우 결과물 자체에도 생성 사실을 표시해야 합니다.",
-  "required_key_points": [
-    "생성형 AI에 의해 생성되었다는 사실을 표시",
-    "외부 반출 시 결과물 자체에 생성 사실을 표시"
-  ]
-},
-{
-  "id": "Q003",
-  "type": "범위 외 질의",
-  "question": "AI가 만든 음악의 저작권자는 누구인가요?",
-  "answerable": false,
-  "expected_verdict": "판단 보류",
-  "gold_article_ids": [],
-  "gold_answer": "제공된 AI기본법과 가이드라인에는 AI 생성 음악의 저작권 귀속을 판단할 근거가 없으므로 판단을 보류합니다.",
-  "required_key_points": [
-    "제공된 근거에 저작권 귀속 규정이 없음",
-    "판단 보류"
-  ]
-}
+    "id": "Q002",
+    "type": "가이드라인 질의",
+    "question": "생성형 AI 결과물을 외부로 반출할 때 어떻게 표시해야 하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_31",
+      "AI_TRANSPARENCY_GUIDE_5"
+    ],
+    "gold_answer": "생성형 AI 결과물은 AI에 의해 생성되었다는 사실을 표시해야 하며, 다운로드나 공유 등으로 외부 반출하는 경우 결과물 자체에도 생성 사실을 표시해야 합니다.",
+    "required_key_points": [
+      "생성형 AI에 의해 생성되었다는 사실을 표시",
+      "외부 반출 시 결과물 자체에 생성 사실을 표시"
+    ]
+  },
+  {
+    "id": "Q003",
+    "type": "범위 외 질의",
+    "question": "AI가 만든 음악의 저작권자는 누구인가요?",
+    "answerable": false,
+    "expected_verdict": "판단 보류",
+    "gold_article_ids": [],
+    "gold_answer": "제공된 AI기본법과 가이드라인에는 AI 생성 음악의 저작권 귀속을 판단할 근거가 없으므로 판단을 보류합니다.",
+    "required_key_points": [
+      "제공된 근거에 저작권 귀속 규정이 없음",
+      "판단 보류"
+    ]
+  },
+  {
+    "id": "Q004",
+    "type": "법령 직접 질의",
+    "question": "고영향 인공지능 사업자는 어떤 책무를 이행해야 하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_34",
+      "AI_BASIC_DECREE_27"
+    ],
+    "gold_answer": "고영향 인공지능 사업자는 안전성·신뢰성 확보를 위해 위험관리방안 수립·운영, 결과·기준·학습데이터 개요 등에 대한 설명 방안, 이용자 보호방안 수립·운영, 사람의 관리·감독, 관련 문서의 작성·보관을 이행해야 합니다.",
+    "required_key_points": [
+      "위험관리방안 수립·운영",
+      "이용자 보호방안",
+      "사람의 관리·감독",
+      "문서 작성·보관"
+    ]
+  },
+  {
+    "id": "Q005",
+    "type": "법령 직접 질의",
+    "question": "고영향 인공지능에 해당하는지 사업자가 확인할 의무가 있나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_33"
+    ],
+    "gold_answer": "인공지능사업자는 제공하는 인공지능이 고영향 인공지능에 해당하는지 사전에 검토해야 하며, 필요한 경우 과학기술정보통신부장관에게 해당 여부의 확인을 요청할 수 있습니다.",
+    "required_key_points": [
+      "사전 검토 의무",
+      "과기정통부장관에게 확인 요청 가능"
+    ]
+  },
+  {
+    "id": "Q006",
+    "type": "법령 직접 질의",
+    "question": "고영향 인공지능 영향평가는 누가 어떻게 해야 하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_35"
+    ],
+    "gold_answer": "고영향 인공지능을 이용한 제품·서비스를 제공하는 사업자는 사전에 사람의 기본권에 미치는 영향을 평가하도록 노력해야 하며, 인공지능취약계층의 특성이 반영되도록 해야 합니다. 국가기관 등은 영향평가를 실시한 제품·서비스를 우선 고려해야 합니다.",
+    "required_key_points": [
+      "사전 기본권 영향평가 노력",
+      "인공지능취약계층 특성 반영",
+      "국가기관 우선 고려"
+    ]
+  },
+  {
+    "id": "Q007",
+    "type": "법령 직접 질의",
+    "question": "인공지능 투명성 확보 의무는 무엇인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_31"
+    ],
+    "gold_answer": "인공지능사업자는 고영향 또는 생성형 인공지능 기반 제품·서비스를 제공할 때 해당 인공지능에 기반한다는 사실을 이용자에게 사전에 고지해야 하며, 생성형 인공지능의 결과물에는 생성형 인공지능으로 생성되었다는 사실을 표시해야 합니다.",
+    "required_key_points": [
+      "사전 고지 의무",
+      "생성형 결과물 생성 사실 표시"
+    ]
+  },
+  {
+    "id": "Q008",
+    "type": "법령 직접 질의",
+    "question": "인공지능 안전성 확보 의무는 어떤 시스템에 적용되나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_32",
+      "AI_BASIC_DECREE_24"
+    ],
+    "gold_answer": "학습에 사용된 누적 연산량이 대통령령 기준(10의 26승 부동소수점연산) 이상인 인공지능시스템에 적용되며, 사업자는 수명주기 전반의 위험 식별·평가·완화와 안전사고 모니터링·대응 위험관리체계를 구축하고 이행 결과를 과기정통부장관에게 제출해야 합니다.",
+    "required_key_points": [
+      "누적 연산량 10^26 이상",
+      "위험 식별·평가·완화",
+      "과기정통부장관에 이행결과 제출"
+    ]
+  },
+  {
+    "id": "Q009",
+    "type": "법령 직접 질의",
+    "question": "국내에 주소가 없는 해외 인공지능사업자는 어떤 의무가 있나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_36"
+    ],
+    "gold_answer": "국내에 주소·영업소가 없고 이용자 수, 매출액 등이 대통령령 기준에 해당하는 인공지능사업자는 안전성 이행결과 제출, 고영향 확인 요청, 책무 이행 등을 대리하는 국내대리인을 서면으로 지정하고 과기정통부장관에게 신고해야 합니다.",
+    "required_key_points": [
+      "국내대리인 서면 지정",
+      "과기정통부장관에 신고"
+    ]
+  },
+  {
+    "id": "Q010",
+    "type": "법령 직접 질의",
+    "question": "투명성 고지 의무를 위반하면 어떤 제재를 받나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_43"
+    ],
+    "gold_answer": "제31조제1항의 사전 고지 의무를 위반한 자, 국내대리인을 지정하지 않은 자, 중지·시정명령을 이행하지 않은 자에게는 3천만원 이하의 과태료가 부과됩니다.",
+    "required_key_points": [
+      "3천만원 이하 과태료",
+      "고지 의무 위반"
+    ]
+  },
+  {
+    "id": "Q011",
+    "type": "법령 직접 질의",
+    "question": "인공지능기본법의 목적은 무엇인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_1"
+    ],
+    "gold_answer": "이 법은 인공지능의 건전한 발전과 신뢰 기반 조성에 필요한 기본적인 사항을 규정함으로써 국민의 권익과 존엄성을 보호하고 국민의 삶의 질 향상과 국가경쟁력 강화에 이바지하는 것을 목적으로 합니다.",
+    "required_key_points": [
+      "건전한 발전과 신뢰 기반 조성",
+      "국민의 권익과 존엄성 보호"
+    ]
+  },
+  {
+    "id": "Q012",
+    "type": "법령 직접 질의",
+    "question": "인공지능시스템의 법적 정의는 무엇인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_2"
+    ],
+    "gold_answer": "인공지능시스템이란 다양한 수준의 자율성과 적응성을 가지고 주어진 목표를 위하여 실제 및 가상환경에 영향을 미치는 예측, 추천, 결정 등의 결과물을 추론하는 인공지능 기반 시스템을 말합니다.",
+    "required_key_points": [
+      "자율성과 적응성",
+      "예측·추천·결정 결과물 추론"
+    ]
+  },
+  {
+    "id": "Q013",
+    "type": "법령 직접 질의",
+    "question": "인공지능 윤리원칙은 누가 정하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_27",
+      "AI_BASIC_DECREE_21"
+    ],
+    "gold_answer": "과학기술정보통신부장관은 인공지능의 안전성과 신뢰성을 확보하기 위한 인공지능 윤리원칙을 제정·공표할 수 있으며, 관계 중앙행정기관 및 이해관계자의 의견을 들어 마련합니다.",
+    "required_key_points": [
+      "과기정통부장관이 제정·공표",
+      "인공지능 윤리원칙"
+    ]
+  },
+  {
+    "id": "Q014",
+    "type": "법령 직접 질의",
+    "question": "고영향 인공지능 확인을 요청하려면 어떤 서류가 필요한가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_DECREE_25"
+    ],
+    "gold_answer": "고영향 인공지능 확인 요청서에 해당 인공지능제품·서비스의 개요서, 개발·학습에 사용된 학습용데이터의 개요, 해당 인공지능시스템 관련 서류 등을 첨부하여 과학기술정보통신부장관에게 제출해야 합니다.",
+    "required_key_points": [
+      "확인 요청서 제출",
+      "제품·서비스 개요서 및 학습데이터 개요 첨부"
+    ]
+  },
+  {
+    "id": "Q015",
+    "type": "법령 직접 질의",
+    "question": "사업자 책무 중 홈페이지 등에 게시해야 하는 사항은 무엇인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_DECREE_27"
+    ],
+    "gold_answer": "위험관리정책 및 조직체계 등 위험관리방안의 주요 내용, 설명 방안의 주요 내용, 이용자 보호방안, 관리·감독하는 사람의 성명 및 연락처 등을 사무소·사업장 또는 인터넷 홈페이지 등에 게시해야 합니다. 다만 영업비밀은 제외할 수 있습니다.",
+    "required_key_points": [
+      "위험관리방안 주요 내용 게시",
+      "관리·감독자 성명·연락처",
+      "영업비밀 제외 가능"
+    ]
+  },
+  {
+    "id": "Q016",
+    "type": "법령 직접 질의",
+    "question": "인공지능기본법은 언제부터 시행되나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_43"
+    ],
+    "gold_answer": "인공지능기본법은 2026년 1월 22일부터 시행됩니다.",
+    "required_key_points": [
+      "2026년 1월 22일 시행"
+    ]
+  },
+  {
+    "id": "Q017",
+    "type": "가이드라인 질의",
+    "question": "고영향 AI의 위험관리방안은 어떻게 수립하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "OBLIG_책무_1-1-1",
+      "AI_BASIC_ACT_34"
+    ],
+    "gold_answer": "고영향 인공지능에 대한 위험관리 계획을 수립하고, 인공지능 수명주기 전반에서 발생 가능한 법적·사회적 위험을 식별·분석·평가·처리하며, 위험관리 조직체계를 구성하고 정책을 지속적으로 개선해야 합니다.",
+    "required_key_points": [
+      "위험관리 계획 수립",
+      "위험 식별·분석·평가·처리",
+      "위험관리 조직체계 구성"
+    ]
+  },
+  {
+    "id": "Q018",
+    "type": "가이드라인 질의",
+    "question": "이용자 보호 방안은 어떻게 수립하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "OBLIG_책무_3-1-1",
+      "OBLIG_책무_3-2-1"
+    ],
+    "gold_answer": "개발 단계에서는 안전·적법한 데이터 수집·관리, 안전한 설계·개발, 지속적 시험·평가를 수행하고, 운영 단계에서는 모니터링 및 대응, 이용자 피드백 수렴·적용, 이용자 권리 보호 체계를 마련해야 합니다.",
+    "required_key_points": [
+      "개발 단계: 데이터 관리·안전 설계·시험평가",
+      "운영 단계: 모니터링·피드백·권리보호"
+    ]
+  },
+  {
+    "id": "Q019",
+    "type": "가이드라인 질의",
+    "question": "고영향 AI에서 사람의 관리·감독은 어떻게 해야 하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "OBLIG_책무_4-1-1",
+      "OBLIG_책무_4-1-2"
+    ],
+    "gold_answer": "사람이 인공지능 동작에 개입할 수 있는 기준(예: 의도한 목적과 다른 성능·결과)을 정의하고, 실제로 개입할 수 있는 방법을 수립해야 합니다. 또한 정기적 점검과 교육·훈련 방안을 마련해야 합니다.",
+    "required_key_points": [
+      "사람의 개입 기준 정의",
+      "개입 방법 수립"
+    ]
+  },
+  {
+    "id": "Q020",
+    "type": "가이드라인 질의",
+    "question": "학습용데이터에 대한 설명은 어떻게 관리해야 하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "OBLIG_책무_2-2-1"
+    ],
+    "gold_answer": "인공지능에 사용되는 학습용데이터의 일반적 내용과 함께 형식, 수량, 크기, 수집 및 전처리 방식 등의 정보를 정의하여 학습용데이터 개요로 관리해야 합니다.",
+    "required_key_points": [
+      "학습용데이터 개요 관리",
+      "형식·수량·수집·전처리 정보 정의"
+    ]
+  },
+  {
+    "id": "Q021",
+    "type": "가이드라인 질의",
+    "question": "생성형 AI 챗봇 서비스는 이용자에게 무엇을 알려야 하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_31",
+      "AI_TRANSPARENCY_GUIDE_1"
+    ],
+    "gold_answer": "생성형 인공지능 기반 챗봇 서비스는 해당 서비스가 인공지능에 기반하여 운용된다는 사실을 이용자에게 사전에 고지해야 하며, 생성된 결과물에는 생성형 인공지능으로 생성되었다는 사실을 표시해야 합니다.",
+    "required_key_points": [
+      "인공지능 기반 사실 사전 고지",
+      "생성 결과물 표시"
+    ]
+  },
+  {
+    "id": "Q022",
+    "type": "가이드라인 질의",
+    "question": "이미지 생성물에는 어떻게 표시해야 하나요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_TRANSPARENCY_GUIDE_13",
+      "AI_BASIC_ACT_31"
+    ],
+    "gold_answer": "생성형 인공지능으로 만든 이미지 생성물에는 인공지능으로 생성되었다는 사실을 이용자가 인식할 수 있도록 표시해야 하며, 가시적 표시와 함께 비가시적 메타데이터 방식 등을 활용할 수 있습니다.",
+    "required_key_points": [
+      "이미지 생성 사실 표시",
+      "가시적 표시·메타데이터 활용"
+    ]
+  },
+  {
+    "id": "Q023",
+    "type": "고영향 판별",
+    "question": "채용 서류전형에 인공지능을 활용하면 고영향 인공지능인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_2"
+    ],
+    "gold_answer": "채용·평가는 제2조제4호에서 정한 고영향 인공지능 활용 영역에 해당하므로, 채용 서류전형에 활용되는 인공지능은 지원자의 기본권에 중대한 영향을 미칠 수 있어 고영향 인공지능에 해당할 수 있습니다.",
+    "required_key_points": [
+      "채용·평가는 고영향 영역",
+      "기본권에 중대한 영향",
+      "고영향 해당 가능"
+    ]
+  },
+  {
+    "id": "Q024",
+    "type": "고영향 판별",
+    "question": "대출·신용 심사에 쓰는 인공지능은 고영향 인공지능인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_2"
+    ],
+    "gold_answer": "대출·신용평가 등 개인의 신용에 중대한 영향을 미치는 영역은 제2조제4호의 고영향 인공지능 활용 영역에 해당하므로, 대출·신용 심사에 활용되는 인공지능은 고영향 인공지능에 해당할 수 있습니다.",
+    "required_key_points": [
+      "신용평가는 고영향 영역",
+      "고영향 해당 가능"
+    ]
+  },
+  {
+    "id": "Q025",
+    "type": "고영향 판별",
+    "question": "의료기기에 탑재된 인공지능 진단 기능은 고영향 인공지능인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_2"
+    ],
+    "gold_answer": "보건의료 제공 및 의료기기·디지털의료기기의 개발·이용은 제2조제4호의 고영향 인공지능 활용 영역에 해당하므로, 의료기기에 탑재된 인공지능 진단 기능은 고영향 인공지능에 해당할 수 있습니다.",
+    "required_key_points": [
+      "보건의료·의료기기는 고영향 영역",
+      "고영향 해당 가능"
+    ]
+  },
+  {
+    "id": "Q026",
+    "type": "고영향 판별",
+    "question": "사내 일정 관리용으로만 쓰는 단순 챗봇도 고영향 인공지능인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_2"
+    ],
+    "gold_answer": "고영향 인공지능은 생명·신체의 안전 및 기본권에 중대한 영향을 미치는 제2조제4호의 특정 영역에서 활용되는 경우를 말합니다. 사내 일정 관리용 단순 챗봇은 그러한 영역에 해당하지 않아 일반적으로 고영향 인공지능으로 보기 어렵습니다.",
+    "required_key_points": [
+      "고영향은 제2조제4호 특정 영역",
+      "단순 일정관리는 해당 영역 아님",
+      "고영향으로 보기 어려움"
+    ]
+  },
+  {
+    "id": "Q027",
+    "type": "범위 외 질의",
+    "question": "인공지능 관련 특허는 어디에 어떻게 출원하나요?",
+    "answerable": false,
+    "expected_verdict": "판단 보류",
+    "gold_article_ids": [],
+    "gold_answer": "제공된 AI기본법과 가이드라인에는 특허 출원 절차에 관한 규정이 없으므로 판단을 보류합니다. 특허 출원은 특허법 및 특허청 절차의 소관입니다.",
+    "required_key_points": [
+      "근거에 특허 출원 절차 규정 없음",
+      "판단 보류"
+    ]
+  },
+  {
+    "id": "Q028",
+    "type": "범위 외 질의",
+    "question": "인공지능 개발자의 평균 연봉은 얼마인가요?",
+    "answerable": false,
+    "expected_verdict": "판단 보류",
+    "gold_article_ids": [],
+    "gold_answer": "제공된 AI기본법과 가이드라인에는 인공지능 개발자의 임금·연봉에 관한 정보가 없으므로 판단을 보류합니다.",
+    "required_key_points": [
+      "근거에 임금·연봉 정보 없음",
+      "판단 보류"
+    ]
+  },
+  {
+    "id": "Q029",
+    "type": "범위 외 질의",
+    "question": "AI 챗봇과의 대화 내용은 개인정보보호법상 어떻게 보호되나요?",
+    "answerable": false,
+    "expected_verdict": "판단 보류",
+    "gold_article_ids": [],
+    "gold_answer": "제공된 AI기본법과 가이드라인은 개인정보보호법상 보호 요건을 직접 규정하지 않으므로 이에 대한 판단을 보류합니다. 개인정보 보호는 개인정보보호법의 소관입니다.",
+    "required_key_points": [
+      "근거는 개인정보보호법 요건을 규정하지 않음",
+      "판단 보류"
+    ]
+  },
+  {
+    "id": "Q030",
+    "type": "고영향 판별",
+    "question": "공공안전 분야(홍수예보, 지능형 CCTV)의 인공지능은 고영향 인공지능인가요?",
+    "answerable": true,
+    "expected_verdict": "답변 확정",
+    "gold_article_ids": [
+      "AI_BASIC_ACT_2"
+    ],
+    "gold_answer": "국민의 생명·신체 안전 및 기본권에 중대한 영향을 미치는 공공안전·에너지·먹는물 등 제2조제4호의 영역에서 활용되는 인공지능은 고영향 인공지능에 해당할 수 있으므로, 홍수예보·지능형 CCTV 등 공공안전 분야 인공지능은 고영향에 해당할 가능성이 있습니다.",
+    "required_key_points": [
+      "공공안전은 생명·안전에 중대한 영향",
+      "제2조제4호 영역 해당 가능",
+      "고영향 해당 가능"
+    ]
+  }
 ]
