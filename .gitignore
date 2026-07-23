@@ -8,3 +8,7 @@ data/vector_store/
 *.pdf
 # 통합 인덱스 빌드 중간 산출물 (build_index로 재생성)
 data/processed/all_chunks.json
+
+# React(web) 빌드 산출물·의존성
+web/node_modules/
+web/dist/
