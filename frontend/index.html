@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>조문조문 · AI기본법 전문 QA 에이전트</title>
+  <meta name="description" content="AI기본법, 직접 물어보세요. 법 조항과 가이드라인을 근거로 정확한 답변을 드립니다." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">조문조문<span class="dot"></span></a>
+      <nav class="nav-links">
+        <a href="#how">서비스 소개</a>
+        <a href="#features">주요 기능</a>
+        <a href="#how">활용 사례</a>
+        <a href="#footer">문의</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="ask.html">무료로 시작하기</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="badge">AI기본법 시행 · 2026.1.22</span>
+        <h1>AI기본법,<br />직접 물어보세요</h1>
+        <p class="lead">단순히 체크리스트가 아닙니다.<br />법 조항과 가이드라인을 근거로 정확한 답변을 드립니다.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="ask.html">지금 질문하기</a>
+          <a class="btn btn-ghost" href="#features">기능 살펴보기 →</a>
+        </div>
+      </div>
+
+      <!-- Chat preview -->
+      <div class="chat-card" aria-hidden="true">
+        <div class="chat-card-head">조문조문 AI <span class="live-dot"></span></div>
+        <div class="chat-card-body">
+          <div class="bubble-user">우리 서비스가 고영향 AI에 해당하나요? (의료 예약 시스템, B2C)</div>
+          <div class="answer-card">
+            <span class="judge-badge judge-high">⚠ 고영향 AI — 해당 가능성 높음</span>
+            <div class="answer-text">의료 예약 시스템은 AI기본법 제2조 제4호에 따른 '의료 서비스 영역' 고영향 AI에 해당합니다.
+
+판단 근거 조항: 제2조 제4호 가목, 시행령 제24조 제1항 제1호</div>
+            <div class="answer-divider"></div>
+            <div class="cite-row">
+              <span class="chip">제2조 제4호</span>
+              <span class="chip">시행령 제24조</span>
+              <span class="chip">판단가이드라인 1.2.1</span>
+            </div>
+          </div>
+          <div class="chat-input">
+            <input type="text" placeholder="AI기본법에 대해 무엇이든 물어보세요..." disabled />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="band">
+    <div class="wrap stats">
+      <div class="stat"><div class="num">6종</div><div class="cap">반영 법·가이드라인 문서</div></div>
+      <div class="stat"><div class="num">2단계</div><div class="cap">고영향 AI 판별 프로세스</div></div>
+      <div class="stat"><div class="num">실시간</div><div class="cap">조항 기반 근거 답변</div></div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="sec-pad">
+    <div class="wrap">
+      <p class="eyebrow">HOW IT WORKS</p>
+      <h2 class="sec-title">3단계로 끝나는 AI기본법 검토</h2>
+      <div class="steps">
+        <div class="step"><div class="idx">01</div><h3>질문 입력</h3><p>서비스나 AI 시스템에 대해 자유롭게 물어보세요.</p></div>
+        <div class="step"><div class="idx">02</div><h3>자동 판별 · 분석</h3><p>2단계 필터링으로 고영향 AI 해당 여부를 즉시 판단하고 관련 법 조항을 탐색합니다.</p></div>
+        <div class="step"><div class="idx">03</div><h3>근거 기반 답변</h3><p>법 조항·가이드라인을 직접 인용한 정확한 답변과 사업자 조치사항을 한 번에 확인하세요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="band sec-pad">
+    <div class="wrap">
+      <p class="eyebrow">FEATURES</p>
+      <h2 class="sec-title">조문조문이 다른 이유</h2>
+      <div class="feats">
+        <div class="feat">
+          <div class="icon">⚖️</div>
+          <span class="tag tag-blue">핵심 기능</span>
+          <h3>고영향 AI 판별</h3>
+          <p>AI기본법 시행령 제24조 기반 2단계 필터링으로 정확하게 판별. 도메인·기본권·영향·비가역성을 자동으로 체크합니다.</p>
+        </div>
+        <div class="feat">
+          <div class="icon">📋</div>
+          <span class="tag tag-green">투명성</span>
+          <h3>조항 근거 제시</h3>
+          <p>답변마다 해당 법 조항·가이드라인을 직접 인용. 근거 없는 말이 아닌 정확한 법률 출처와 함께 판단 결과를 확인하세요.</p>
+        </div>
+        <div class="feat">
+          <div class="icon">📌</div>
+          <span class="tag tag-amber">실무 적용</span>
+          <h3>사업자 책무 안내</h3>
+          <p>고영향 AI로 판단 시 위험관리·설명·이용자보호 등 5개 책무 조치사항을 즉시 안내합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="blob blob-2"></div>
+    <div class="wrap">
+      <h2>지금 바로 물어보세요</h2>
+      <p>로그인 없이 즉시 사용 가능 · AI기본법 전문 QA 에이전트</p>
+      <a class="btn btn-primary" href="ask.html">무료로 시작하기 →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer">
+    <div class="wrap footer-inner">
+      <div>
+        <div class="fbrand">조문조문</div>
+        <div class="fdesc">AI기본법 전문 QA 에이전트<br />홍익대학교 산업·데이터공학과 졸업 프로젝트</div>
+      </div>
+      <nav class="footer-links">
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="https://github.com/AI-act-agent" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+    <div class="wrap copy">© 2026 조문조문. Built on AI기본법 가이드라인 7종.</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>질문하기 · 조문조문</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="ask-page">
+  <!-- Header -->
+  <header class="ask-header">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">조문조문<span class="dot"></span></a>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span class="bot-name" style="margin:0;">조문조문 AI <span class="live-dot"></span></span>
+        <a class="btn btn-ghost btn-sm" href="index.html">← 홈으로</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="ask-main">
+    <!-- Intro (사라짐: 첫 질문 후) -->
+    <div id="intro" class="ask-intro">
+      <h1>무엇이든 물어보세요</h1>
+      <p>AI기본법 조항과 가이드라인을 근거로 답변해 드립니다.</p>
+      <div class="samples" id="samples">
+        <button class="sample-chip">우리 서비스가 고영향 AI에 해당하나요? (의료 예약 시스템, B2C)</button>
+        <button class="sample-chip">고영향 AI 사업자의 책무는 무엇인가요?</button>
+        <button class="sample-chip">이용자 보호 방안은 어떻게 수립해야 하나요?</button>
+        <button class="sample-chip">채용에 쓰는 AI도 고영향 AI인가요?</button>
+      </div>
+    </div>
+
+    <!-- 대화 스레드 -->
+    <div class="thread" id="thread"></div>
+
+    <!-- 입력창 -->
+    <div class="composer">
+      <form class="chat-input" id="form" autocomplete="off">
+        <input id="q" type="text" placeholder="AI기본법에 대해 무엇이든 물어보세요..." aria-label="질문 입력" />
+        <button class="send" id="send" type="submit" aria-label="전송">↑</button>
+      </form>
+      <p class="disclaimer">답변은 참고용이며 법적 효력이 없습니다. 정확한 판단은 전문가와 상담하세요.</p>
+    </div>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
